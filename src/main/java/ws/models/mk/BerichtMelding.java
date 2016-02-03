@@ -1,5 +1,5 @@
 
-package main.java.ws.models;
+package main.java.ws.models.mk;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Antwoord" type="{http://localhost:8088/ServiceSoap/}ResultDoc"/>
+ *         &lt;element name="Melding" type="{TNS}IncomingDoc"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +28,29 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {"antwoord"})
-@XmlRootElement(name = "BerichtendienstAntwoord")
-public class BerichtendienstAntwoord {
+@XmlType(name = "", propOrder = {"melding"})
+@XmlRootElement(name = "BerichtMelding")
+public class BerichtMelding {
 
-    @XmlElement(name = "Antwoord", required = true)
-    protected ResultDoc antwoord;
+    @XmlElement(name = "Melding", required = true)
+    protected IncomingDoc melding;
 
     /**
-     * Gets the value of the antwoord property.
+     * Gets the value of the melding property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ResultDoc }
-     *     
+     * @return possible object is {@link IncomingDoc }
      */
-    public ResultDoc getAntwoord() {
-        return antwoord;
+    public IncomingDoc getMelding() {
+        return melding;
     }
 
     /**
-     * Sets the value of the antwoord property.
+     * Sets the value of the melding property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link ResultDoc }
-     *     
+     * @param value allowed object is {@link IncomingDoc }
      */
-    public void setAntwoord(ResultDoc value) {
-        this.antwoord = value;
+    public void setMelding(IncomingDoc value) {
+        this.melding = value;
     }
 
 }

@@ -1,8 +1,8 @@
 package main.java;
 
-import main.java.ws.models.BerichtMelding_Service;
-import main.java.ws.models.IncomingDoc;
-import main.java.ws.models.ResultDoc;
+import main.java.ws.models.BerichtMeldingService;
+import main.java.ws.models.mk.IncomingDoc;
+import main.java.ws.models.mk.ResultDoc;
 import main.java.ws.services.ServiceSoap;
 
 import javax.xml.ws.WebServiceRef;
@@ -14,7 +14,7 @@ import javax.xml.ws.WebServiceRef;
 public class BerichtMeldingClient {
 
   @WebServiceRef(wsdlLocation = "http://localhost:8088/ServiceSoap?wsdl")
-  static BerichtMelding_Service service;
+  static BerichtMeldingService service;
 
   /**
    * @param args arguments
@@ -31,7 +31,7 @@ public class BerichtMeldingClient {
 
   public void doTest(String[] args) {
     try {
-      service = new BerichtMelding_Service();
+      service = new BerichtMeldingService();
       ServiceSoap port = service.getServiceSoap();
       String name;
       if (args.length > 0) {
@@ -50,7 +50,7 @@ public class BerichtMeldingClient {
 
   public void doTest2(String[] args) {
     try {
-      service = new BerichtMelding_Service();
+      service = new BerichtMeldingService();
       ServiceSoap port = service.getServiceSoap();
       String name;
       if (args.length > 0) {
@@ -58,7 +58,7 @@ public class BerichtMeldingClient {
       } else {
         name = "Incentro";
       }
-      ResultDoc response = port.cityAlertDataRequest(new IncomingDoc(name));
+      ResultDoc response = port.cityAlertDataRequest(new main.java.ws.models.baa.IncomingDoc());
       System.out.println("************************");
       System.out.println(response.getKleurcode());
       System.out.println("************************");

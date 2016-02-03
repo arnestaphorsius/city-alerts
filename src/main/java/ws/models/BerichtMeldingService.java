@@ -1,5 +1,5 @@
 
-package main.java.ws.models.baa;
+package main.java.ws.models;
 
 import main.java.ws.services.ServiceSoap;
 
@@ -19,14 +19,12 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "DataRequest", targetNamespace = "http://localhost:8088/ServiceSoap/", wsdlLocation = "http://localhost:8088/ServiceSoap?wsdl")
-public class DataRequest
-    extends Service
-{
+@WebServiceClient(name = "BerichtMelding", targetNamespace = "http://localhost:8088/ServiceSoap/", wsdlLocation = "http://localhost:8088/ServiceSoap?wsdl")
+public class BerichtMeldingService extends Service {
 
-    private final static URL DATAREQUEST_WSDL_LOCATION;
-    private final static WebServiceException DATAREQUEST_EXCEPTION;
-    private final static QName DATAREQUEST_QNAME = new QName("http://localhost:8088/ServiceSoap/", "DataRequest");
+    private final static URL BERICHTMELDING_WSDL_LOCATION;
+    private final static WebServiceException BERICHTMELDING_EXCEPTION;
+    private final static QName BERICHTMELDING_QNAME = new QName("http://localhost:8088/ServiceSoap/", "BerichtMelding");
 
     static {
         URL url = null;
@@ -36,31 +34,31 @@ public class DataRequest
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
-        DATAREQUEST_WSDL_LOCATION = url;
-        DATAREQUEST_EXCEPTION = e;
+        BERICHTMELDING_WSDL_LOCATION = url;
+        BERICHTMELDING_EXCEPTION = e;
     }
 
-    public DataRequest() {
-        super(__getWsdlLocation(), DATAREQUEST_QNAME);
+    public BerichtMeldingService() {
+        super(__getWsdlLocation(), BERICHTMELDING_QNAME);
     }
 
-    public DataRequest(WebServiceFeature... features) {
-        super(__getWsdlLocation(), DATAREQUEST_QNAME, features);
+    public BerichtMeldingService(WebServiceFeature... features) {
+        super(__getWsdlLocation(), BERICHTMELDING_QNAME, features);
     }
 
-    public DataRequest(URL wsdlLocation) {
-        super(wsdlLocation, DATAREQUEST_QNAME);
+    public BerichtMeldingService(URL wsdlLocation) {
+        super(wsdlLocation, BERICHTMELDING_QNAME);
     }
 
-    public DataRequest(URL wsdlLocation, WebServiceFeature... features) {
-        super(wsdlLocation, DATAREQUEST_QNAME, features);
+    public BerichtMeldingService(URL wsdlLocation, WebServiceFeature... features) {
+        super(wsdlLocation, BERICHTMELDING_QNAME, features);
     }
 
-    public DataRequest(URL wsdlLocation, QName serviceName) {
+    public BerichtMeldingService(URL wsdlLocation, QName serviceName) {
         super(wsdlLocation, serviceName);
     }
 
-    public DataRequest(URL wsdlLocation, QName serviceName, WebServiceFeature... features) {
+    public BerichtMeldingService(URL wsdlLocation, QName serviceName, WebServiceFeature... features) {
         super(wsdlLocation, serviceName, features);
     }
 
@@ -87,10 +85,10 @@ public class DataRequest
     }
 
     private static URL __getWsdlLocation() {
-        if (DATAREQUEST_EXCEPTION!= null) {
-            throw DATAREQUEST_EXCEPTION;
+        if (BERICHTMELDING_EXCEPTION!= null) {
+            throw BERICHTMELDING_EXCEPTION;
         }
-        return DATAREQUEST_WSDL_LOCATION;
+        return BERICHTMELDING_WSDL_LOCATION;
     }
 
 }

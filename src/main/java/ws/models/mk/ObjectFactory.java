@@ -1,5 +1,5 @@
 
-package main.java.ws.models;
+package main.java.ws.models.mk;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

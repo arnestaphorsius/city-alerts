@@ -1,14 +1,16 @@
 package main.java.ws.services;
 
-import main.java.ws.models.IncomingDoc;
-import main.java.ws.models.ObjectFactory;
-import main.java.ws.models.ResultDoc;
+import main.java.ws.models.mk.IncomingDoc;
+import main.java.ws.models.mk.ObjectFactory;
+import main.java.ws.models.mk.ResultDoc;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.ParameterStyle;
+import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
@@ -21,6 +23,7 @@ import javax.xml.ws.ResponseWrapper;
  *
  */
 @WebService(name = "ServiceSoap", targetNamespace = "http://localhost:8088/ServiceSoap/")
+@SOAPBinding(style = Style.DOCUMENT, parameterStyle = ParameterStyle.WRAPPED)
 @XmlSeeAlso({ ObjectFactory.class })
 public interface ServiceSoap {
 
@@ -30,8 +33,8 @@ public interface ServiceSoap {
    */
   @WebMethod(action = "http://localhost:8088/ServiceSoap/BerichtMelding", operationName = "BerichtMelding")
   @WebResult(name = "Antwoord", targetNamespace = "http://localhost:8088/ServiceSoap/")
-  @RequestWrapper(localName = "BerichtMelding", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.BerichtMelding", partName = "param")
-  @ResponseWrapper(localName = "BerichtendienstAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.BerichtendienstAntwoord", partName = "param")
+  @RequestWrapper(localName = "BerichtMelding", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.mk.BerichtMelding", partName = "parameter")
+  @ResponseWrapper(localName = "BerichtendienstAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.mk.BerichtendienstAntwoord", partName = "parameter")
   ResultDoc berichtMelding(
       @WebParam(name = "Melding", targetNamespace = "http://localhost:8088/ServiceSoap/")
       IncomingDoc melding);
@@ -42,10 +45,10 @@ public interface ServiceSoap {
    */
   @WebMethod(action = "http://localhost:8088/ServiceSoap/CityAlertDataRequest", operationName = "CityAlertDataRequest")
   @WebResult(name = "Antwoord", targetNamespace = "http://localhost:8088/ServiceSoap/")
-  @RequestWrapper(localName = "BerichtVraag", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtVraag", partName = "param")
-  @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtAntwoord", partName = "param")
+  @RequestWrapper(localName = "BerichtVraag", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtVraag", partName = "parameter")
+  @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtAntwoord", partName = "parameter")
   ResultDoc cityAlertDataRequest(
       @WebParam(name = "Request", targetNamespace = "http://localhost:8088/ServiceSoap/")
-      IncomingDoc request);
+      main.java.ws.models.baa.IncomingDoc request);
 
 }

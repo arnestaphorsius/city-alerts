@@ -1,13 +1,7 @@
 
 package main.java.ws.models.baa;
 
-import main.java.ws.models.baa.BerichtAntwoord;
-import main.java.ws.models.baa.BerichtVraag;
-import main.java.ws.models.baa.IncomingDoc;
-import main.java.ws.models.baa.ResultDoc;
-
 import javax.xml.bind.annotation.XmlRegistry;
-
 
 /**
  * This object contains factory methods for each 

@@ -80,7 +80,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "IncomingDoc", propOrder = {
+@XmlType(name = "IncomingDocBAA", propOrder = {
     "incidentid",
     "prioriteitincidentbrandweer",
     "dtgstartincident",

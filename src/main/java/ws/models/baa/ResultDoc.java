@@ -75,7 +75,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ResultDoc", propOrder = {
+@XmlType(name = "ResultDocBAA", propOrder = {
     "incidentid",
     "resultaatcode",
     "locatie",

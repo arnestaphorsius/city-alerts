@@ -1,5 +1,5 @@
 
-package main.java.ws.models;
+package main.java.ws.models.mk;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
