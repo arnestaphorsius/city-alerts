@@ -1,6 +1,6 @@
 package main.java;
 
-import main.java.util.AppProps;
+import main.java.util.App;
 import main.java.ws.services.impl.ServiceSoapImpl;
 
 import javax.xml.ws.Endpoint;
@@ -12,7 +12,7 @@ import javax.xml.ws.Endpoint;
 public class BerichtMeldingPublisher {
 
   static {
-    AppProps.init();
+    App.init();
   }
 
   public static void main(String... args) {

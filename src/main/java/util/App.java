@@ -9,7 +9,7 @@ import java.util.Properties;
  * @author Arne Staphorsius.
  * @since 3-2-2016.
  */
-public class AppProps {
+public class App {
 
   private static Properties properties = null;
 
