@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+targetNamespace="TNS"
+xmlns:tns="TNS"
+
+xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:element name="BerichtMelding">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Melding" type="tns:IncomingDoc"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="IncomingDoc">
+		<xs:sequence>
+			<xs:element name="INCIDENT_ID" type="xs:string"/>
+			<xs:element name="WAARDE_MELD_CLASS_1" type="xs:string"/>
+			<xs:element name="WAARDE_MELD_CLASS_2" type="xs:string"/>
+			<xs:element name="WAARDE_MELD_CLASS_3" type="xs:string"/>
+			<xs:element name="PRIORITEIT_INCIDENT_BRANDWEER" type="xs:string"/>
+			<xs:element name="DTG_START_INCIDENT" type="xs:dateTime"/>
+			<xs:element name="STRAATNAAM_NEN" type="xs:string"/>
+			<xs:element name="POSTCODE" type="xs:string"/>
+			<xs:element name="HUIS_PAAL_NR" type="xs:integer"/>
+			<xs:element name="HUIS_NR_TOEV" type="xs:string"/>
+			<xs:element name="OBJECT_HUISNUMMERTOEVOEGING" type="xs:string"/>
+			<xs:element name="T_X_COORD" type="xs:decimal"/>
+			<xs:element name="T_Y_COORD" type="xs:decimal"/>
+			<xs:element name="ROEPNAAM_EENHEID" type="xs:string"/>
+			<xs:element name="CODE_VOERTUIGSOORT" type="xs:string"/>
+			<xs:element name="KAZ_NAAM" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="BerichtdienstAntwoord">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Antwoord" type="tns:ResultDoc"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ResultDoc">
+		<xs:sequence>
+			<xs:element name="INCIDENT_ID" type="xs:string"/>
+			<xs:element name="Resultaatcode" type="xs:string"/>
+			<xs:element name="STRAATNAAM_NEN" type="xs:string"/>
+			<xs:element name="POSTCODE" type="xs:string"/>
+			<xs:element name="HUIS_PAAL_NR" type="xs:integer"/>
+			<xs:element name="HUIS_NR_TOEV" type="xs:string"/>
+			<xs:element name="OBJECT_HUISNUMMERTOEVOEGING" type="xs:string"/>
+			<xs:element name="T_X_COORD" type="xs:string"/>
+			<xs:element name="T_Y_COORD" type="xs:string"/>
+			<xs:element name="Indicator" type="xs:string"/>
+			<xs:element name="Label" type="xs:string"/>
+			<xs:element name="Kleurcode" type="xs:string"/>
+			<xs:element name="AanvullendeInfo" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
