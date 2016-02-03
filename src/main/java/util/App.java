@@ -3,6 +3,9 @@ package main.java.util;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -11,36 +14,70 @@ import java.util.Properties;
  */
 public class App {
 
-  private static Properties properties = null;
+  private static Properties PROPERTIES = null;
+  public static Connection CONNECTION = null;
 
   public static void init() {
 
-    properties = new Properties();
-    InputStream input = null;
+    // Load all properties
+    Props.init();
 
-    try {
-      input = new FileInputStream("src/main/resources/config.properties");
+    // Set up connection to the database
+    DBConn.init();
+  }
 
-      properties.load(input);
+  public static String getProperty(String key) {
+    return PROPERTIES.getProperty(key);
+  }
 
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      if (input != null) {
-        try {
-          input.close();
-        } catch (IOException e) {
-          e.printStackTrace();
+  private static class DBConn {
+
+    protected static void init() {
+
+      try {
+        Class.forName("org.postgresql.Driver");
+      } catch (ClassNotFoundException e) {
+        System.out.println("PostgreSQL JDBC Driver not found.");
+        e.printStackTrace();
+        return;
+      }
+
+      try {
+        CONNECTION = DriverManager.getConnection(
+            App.getProperty(Constants.Database.DB_URL),
+            App.getProperty(Constants.Database.DB_USER),
+            App.getProperty(Constants.Database.DB_PASSWORD));
+      } catch (SQLException e) {
+        System.out.println("PostgreSQL connection failed.");
+        e.printStackTrace();
+      }
+    }
+  }
+
+  private static class Props {
+
+    protected static void init() {
+
+      PROPERTIES = new Properties();
+      InputStream input = null;
+
+      try {
+        input = new FileInputStream(Constants.Properties.FILE_LOCATION);
+
+        PROPERTIES.load(input);
+
+      } catch (IOException e) {
+        e.printStackTrace();
+      } finally {
+        if (input != null) {
+          try {
+            input.close();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
   }
 
-  public static String getTNS() {
-    return properties.getProperty(Constants.Properties.TARGET_NAMESPACE);
-  }
-
-  public static String getWSDL() {
-    return properties.getProperty(Constants.Properties.WSDL_LOCATION);
-  }
 }

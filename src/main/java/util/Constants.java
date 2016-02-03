@@ -7,7 +7,14 @@ package main.java.util;
 public class Constants {
 
   public static class Properties {
-    public static final String TARGET_NAMESPACE = "namespace";
-    public static final String WSDL_LOCATION = "wsdlLocation";
+
+    public static final String FILE_LOCATION = "src/main/resources/config.properties";
+  }
+
+  public static class Database {
+
+    public static final String DB_URL = "dburl";
+    public static final String DB_USER = "dbuser";
+    public static final String DB_PASSWORD = "dbpassword";
   }
 }
