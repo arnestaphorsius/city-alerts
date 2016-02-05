@@ -1,5 +1,5 @@
 
-package main.java.ws.models.baa;
+package main.java.com.incentro.ws.models.mk;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Vraag" type="{TNS}IncomingDoc"/>
+ *         &lt;element name="Melding" type="{TNS}IncomingDoc"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,37 +28,29 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "vraag"
-})
-@XmlRootElement(name = "BerichtVraag")
-public class BerichtVraag {
+@XmlType(name = "", propOrder = {"melding"})
+@XmlRootElement(name = "BerichtMelding")
+public class BerichtMelding {
 
-    @XmlElement(name = "Vraag", required = true)
-    protected main.java.ws.models.baa.IncomingDoc vraag;
+    @XmlElement(name = "Melding", required = true)
+    protected IncomingDoc melding;
 
     /**
-     * Gets the value of the vraag property.
+     * Gets the value of the melding property.
      * 
-     * @return
-     *     possible object is
-     *     {@link IncomingDoc }
-     *     
+     * @return possible object is {@link IncomingDoc }
      */
-    public IncomingDoc getVraag() {
-        return vraag;
+    public IncomingDoc getMelding() {
+        return melding;
     }
 
     /**
-     * Sets the value of the vraag property.
+     * Sets the value of the melding property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link IncomingDoc }
-     *     
+     * @param value allowed object is {@link IncomingDoc }
      */
-    public void setVraag(IncomingDoc value) {
-        this.vraag = value;
+    public void setMelding(IncomingDoc value) {
+        this.melding = value;
     }
 
 }

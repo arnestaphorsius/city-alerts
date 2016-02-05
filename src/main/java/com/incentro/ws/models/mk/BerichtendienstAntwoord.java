@@ -1,5 +1,5 @@
 
-package main.java.ws.models.mk;
+package main.java.com.incentro.ws.models.mk;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

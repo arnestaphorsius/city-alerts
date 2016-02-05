@@ -1,8 +1,8 @@
-package main.java.ws.services;
+package main.java.com.incentro.ws.services;
 
-import main.java.ws.models.mk.IncomingDoc;
-import main.java.ws.models.mk.ObjectFactory;
-import main.java.ws.models.mk.ResultDoc;
+import main.java.com.incentro.ws.models.mk.IncomingDoc;
+import main.java.com.incentro.ws.models.mk.ObjectFactory;
+import main.java.com.incentro.ws.models.mk.ResultDoc;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -47,8 +47,8 @@ public interface ServiceSoap {
   @WebResult(name = "Antwoord", targetNamespace = "http://localhost:8088/ServiceSoap/")
   @RequestWrapper(localName = "BerichtVraag", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtVraag", partName = "parameter")
   @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtAntwoord", partName = "parameter")
-  main.java.ws.models.baa.ResultDoc cityAlertDataRequest(
+  main.java.com.incentro.ws.models.baa.ResultDoc cityAlertDataRequest(
       @WebParam(name = "Request", targetNamespace = "http://localhost:8088/ServiceSoap/")
-      main.java.ws.models.baa.IncomingDoc request);
+      main.java.com.incentro.ws.models.baa.IncomingDoc request);
 
 }

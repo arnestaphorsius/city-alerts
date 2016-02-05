@@ -1,5 +1,5 @@
 
-package main.java.ws.models.baa;
+package main.java.com.incentro.ws.models.baa;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class BerichtAntwoord {
 
     @XmlElement(name = "Antwoord", required = true)
-    protected main.java.ws.models.baa.ResultDoc antwoord;
+    protected main.java.com.incentro.ws.models.baa.ResultDoc antwoord;
 
     /**
      * Gets the value of the antwoord property.

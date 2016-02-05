@@ -1,7 +1,7 @@
-package main.java;
+package main.java.com.incentro;
 
-import main.java.util.App;
-import main.java.ws.services.impl.ServiceSoapImpl;
+import main.java.com.incentro.core.util.App;
+import main.java.com.incentro.ws.services.impl.ServiceSoapImpl;
 
 import javax.xml.ws.Endpoint;
 

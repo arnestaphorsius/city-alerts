@@ -1,5 +1,5 @@
 
-package main.java.ws.models.baa;
+package main.java.com.incentro.ws.models.baa;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

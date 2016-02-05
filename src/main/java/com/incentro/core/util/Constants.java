@@ -1,4 +1,4 @@
-package main.java.util;
+package main.java.com.incentro.core.util;
 
 /**
  * @author Arne Staphorsius.

@@ -1,9 +1,9 @@
-package main.java;
+package main.java.com.incentro;
 
-import main.java.ws.models.BerichtMeldingService;
-import main.java.ws.models.mk.IncomingDoc;
-import main.java.ws.models.mk.ResultDoc;
-import main.java.ws.services.ServiceSoap;
+import main.java.com.incentro.ws.models.BerichtMeldingService;
+import main.java.com.incentro.ws.models.mk.IncomingDoc;
+import main.java.com.incentro.ws.models.mk.ResultDoc;
+import main.java.com.incentro.ws.services.ServiceSoap;
 
 import javax.xml.ws.WebServiceRef;
 
@@ -53,7 +53,7 @@ public class BerichtMeldingClient {
       service = new BerichtMeldingService();
       ServiceSoap port = service.getServiceSoap();
 
-      main.java.ws.models.baa.ResultDoc response = port.cityAlertDataRequest(new main.java.ws.models.baa.IncomingDoc());
+      main.java.com.incentro.ws.models.baa.ResultDoc response = port.cityAlertDataRequest(new main.java.com.incentro.ws.models.baa.IncomingDoc());
       System.out.println("************************");
       System.out.println(response.getINCIDENTID());
       System.out.println("************************");

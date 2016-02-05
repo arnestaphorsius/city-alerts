@@ -1,7 +1,7 @@
 
-package main.java.ws.models;
+package main.java.com.incentro.ws.models;
 
-import main.java.ws.services.ServiceSoap;
+import main.java.com.incentro.ws.services.ServiceSoap;
 
 import java.net.MalformedURLException;
 import java.net.URL;

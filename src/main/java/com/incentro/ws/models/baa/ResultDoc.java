@@ -1,5 +1,5 @@
 
-package main.java.ws.models.baa;
+package main.java.com.incentro.ws.models.baa;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -95,6 +95,18 @@ public class ResultDoc {
     @XmlElement(name = "Indicator_Milieuvergunning", required = true)
     protected ResultDoc.IndicatorMilieuvergunning indicatorMilieuvergunning;
 
+    public ResultDoc() {}
+
+    public static ResultDoc apply(IncomingDoc incomingDoc) {
+        ResultDoc result = new ResultDoc();
+
+        if (incomingDoc == null) return result;
+
+        result.setINCIDENTID(incomingDoc.getINCIDENTID());
+        result.setLocatie(new Locatie(incomingDoc.getLocatie()));
+
+        return result;
+    }
     /**
      * Gets the value of the incidentid property.
      * 
@@ -481,6 +493,21 @@ public class ResultDoc {
         protected BigDecimal txcoord;
         @XmlElement(name = "T_Y_COORD", required = true)
         protected BigDecimal tycoord;
+
+        public Locatie() {}
+
+        public Locatie(IncomingDoc.Locatie locatie) {
+
+            if (locatie != null) {
+                this.setHUISNRTOEV(locatie.getHUISNRTOEV());
+                this.setHUISPAALNR(locatie.getHUISPAALNR());
+                this.setOBJECTHUISNUMMERTOEVOEGING(locatie.getOBJECTHUISNUMMERTOEVOEGING());
+                this.setPOSTCODE(locatie.getPOSTCODE());
+                this.setSTRAATNAAMNEN(locatie.getSTRAATNAAMNEN());
+                this.setTXCOORD(locatie.getTXCOORD());
+                this.setTYCOORD(locatie.getTYCOORD());
+            }
+        }
 
         /**
          * Gets the value of the straatnaamnen property.
