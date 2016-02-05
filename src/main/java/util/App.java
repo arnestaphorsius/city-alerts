@@ -5,6 +5,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -14,7 +16,7 @@ import java.util.Properties;
 public class App {
 
   private static Properties PROPERTIES = null;
-  public static BasicDataSource CONNECTION_POOL = null;
+  private static BasicDataSource CONNECTION_POOL = null;
 
   public static void init() {
 
@@ -29,26 +31,40 @@ public class App {
     return PROPERTIES.getProperty(key);
   }
 
+  public static Connection getConnection() throws SQLException {
+    return CONNECTION_POOL.getConnection();
+  }
+
   private static class DBConn {
 
     protected static void init() {
 
       try {
-        Class.forName("org.postgresql.Driver");
+        Class.forName(getProperty(Constants.Database.DB_DRIVER));
       } catch (ClassNotFoundException e) {
         System.out.println("PostgreSQL JDBC Driver not found.");
         e.printStackTrace();
         return;
       }
 
-      CONNECTION_POOL = new BasicDataSource();
+      try {
+        CONNECTION_POOL = new BasicDataSource();
 
-      CONNECTION_POOL.setUsername(Constants.Database.DB_USER);
-      CONNECTION_POOL.setPassword(Constants.Database.DB_PASSWORD);
-      CONNECTION_POOL.setUrl(Constants.Database.DB_URL);
-      CONNECTION_POOL.setDriverClassName("org.postgresql.Driver");
+        CONNECTION_POOL.setUsername(getProperty(Constants.Database.DB_USER));
+        CONNECTION_POOL.setPassword(getProperty(Constants.Database.DB_PASSWORD));
+        CONNECTION_POOL.setUrl(getProperty(Constants.Database.DB_URL));
+        CONNECTION_POOL.setDriverClassName(getProperty(Constants.Database.DB_DRIVER));
 
-      CONNECTION_POOL.setInitialSize(3);
+        CONNECTION_POOL.setInitialSize(1);
+
+        // Retrieve and close a connection to test the configuration.
+        Connection connection = getConnection();
+        connection.close();
+
+      } catch (SQLException e) {
+        System.out.println("Unable to connect to the PostgreSQL database.");
+        e.printStackTrace();
+      }
     }
   }
 
