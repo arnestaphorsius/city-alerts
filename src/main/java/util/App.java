@@ -1,11 +1,10 @@
 package main.java.util;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Properties;
 public class App {
 
   private static Properties PROPERTIES = null;
-  public static Connection CONNECTION = null;
+  public static BasicDataSource CONNECTION_POOL = null;
 
   public static void init() {
 
@@ -42,15 +41,14 @@ public class App {
         return;
       }
 
-      try {
-        CONNECTION = DriverManager.getConnection(
-            App.getProperty(Constants.Database.DB_URL),
-            App.getProperty(Constants.Database.DB_USER),
-            App.getProperty(Constants.Database.DB_PASSWORD));
-      } catch (SQLException e) {
-        System.out.println("PostgreSQL connection failed.");
-        e.printStackTrace();
-      }
+      CONNECTION_POOL = new BasicDataSource();
+
+      CONNECTION_POOL.setUsername(Constants.Database.DB_USER);
+      CONNECTION_POOL.setPassword(Constants.Database.DB_PASSWORD);
+      CONNECTION_POOL.setUrl(Constants.Database.DB_URL);
+      CONNECTION_POOL.setDriverClassName("org.postgresql.Driver");
+
+      CONNECTION_POOL.setInitialSize(3);
     }
   }
 
