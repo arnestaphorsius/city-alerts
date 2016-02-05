@@ -28,9 +28,9 @@ public class ServiceSoapImpl implements ServiceSoap {
   }
 
   @Override
-  public ResultDoc cityAlertDataRequest(main.java.ws.models.baa.IncomingDoc request) {
-    ResultDoc resultDoc = new ResultDoc();
-    resultDoc.setKleurcode("Wit");
+  public main.java.ws.models.baa.ResultDoc cityAlertDataRequest(main.java.ws.models.baa.IncomingDoc request) {
+    main.java.ws.models.baa.ResultDoc resultDoc = new main.java.ws.models.baa.ResultDoc();
+    resultDoc.setINCIDENTID(request.getINCIDENTID());
     return resultDoc;
   }
 }

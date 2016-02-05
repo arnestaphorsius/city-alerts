@@ -52,15 +52,10 @@ public class BerichtMeldingClient {
     try {
       service = new BerichtMeldingService();
       ServiceSoap port = service.getServiceSoap();
-      String name;
-      if (args.length > 0) {
-        name = args[0];
-      } else {
-        name = "Incentro";
-      }
-      ResultDoc response = port.cityAlertDataRequest(new main.java.ws.models.baa.IncomingDoc());
+
+      main.java.ws.models.baa.ResultDoc response = port.cityAlertDataRequest(new main.java.ws.models.baa.IncomingDoc());
       System.out.println("************************");
-      System.out.println(response.getKleurcode());
+      System.out.println(response.getINCIDENTID());
       System.out.println("************************");
     } catch (Exception e) {
       e.printStackTrace();

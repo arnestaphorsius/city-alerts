@@ -47,7 +47,7 @@ public interface ServiceSoap {
   @WebResult(name = "Antwoord", targetNamespace = "http://localhost:8088/ServiceSoap/")
   @RequestWrapper(localName = "BerichtVraag", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtVraag", partName = "parameter")
   @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtAntwoord", partName = "parameter")
-  ResultDoc cityAlertDataRequest(
+  main.java.ws.models.baa.ResultDoc cityAlertDataRequest(
       @WebParam(name = "Request", targetNamespace = "http://localhost:8088/ServiceSoap/")
       main.java.ws.models.baa.IncomingDoc request);
 
