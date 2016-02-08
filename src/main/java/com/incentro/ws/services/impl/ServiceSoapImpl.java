@@ -22,14 +22,21 @@ public class ServiceSoapImpl implements ServiceSoap {
 
   @Override
   public main.java.com.incentro.ws.models.mk.ResultDoc berichtMelding(main.java.com.incentro.ws.models.mk.IncomingDoc melding) {
+
     main.java.com.incentro.ws.models.mk.ResultDoc resultDoc = new main.java.com.incentro.ws.models.mk.ResultDoc();
     resultDoc.setKleurcode("Rood");
+
     return resultDoc;
   }
 
   @Override
   public ResultDoc cityAlertDataRequest(IncomingDoc request) {
 
-    return ResultDoc.apply(request);
+    ResultDoc result = ResultDoc.apply(request);
+
+    result.setIndicatorMilieuvergunning(new ResultDoc.IndicatorMilieuvergunning());
+    //result.setIndicatorRisicoObject(new ResultDoc.IndicatorRisicoObject());
+
+    return result;
   }
 }

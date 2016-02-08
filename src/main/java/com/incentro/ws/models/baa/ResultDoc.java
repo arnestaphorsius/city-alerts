@@ -103,7 +103,7 @@ public class ResultDoc {
         if (incomingDoc == null) return result;
 
         result.setINCIDENTID(incomingDoc.getINCIDENTID());
-        result.setLocatie(new Locatie(incomingDoc.getLocatie()));
+        result.setLocatie(Locatie.apply(incomingDoc.getLocatie()));
 
         return result;
     }
@@ -496,17 +496,20 @@ public class ResultDoc {
 
         public Locatie() {}
 
-        public Locatie(IncomingDoc.Locatie locatie) {
+        public static Locatie apply(IncomingDoc.Locatie locatie) {
+
+            Locatie result = new Locatie();
 
             if (locatie != null) {
-                this.setHUISNRTOEV(locatie.getHUISNRTOEV());
-                this.setHUISPAALNR(locatie.getHUISPAALNR());
-                this.setOBJECTHUISNUMMERTOEVOEGING(locatie.getOBJECTHUISNUMMERTOEVOEGING());
-                this.setPOSTCODE(locatie.getPOSTCODE());
-                this.setSTRAATNAAMNEN(locatie.getSTRAATNAAMNEN());
-                this.setTXCOORD(locatie.getTXCOORD());
-                this.setTYCOORD(locatie.getTYCOORD());
+                result.setHUISNRTOEV(locatie.getHUISNRTOEV());
+                result.setHUISPAALNR(locatie.getHUISPAALNR());
+                result.setOBJECTHUISNUMMERTOEVOEGING(locatie.getOBJECTHUISNUMMERTOEVOEGING());
+                result.setPOSTCODE(locatie.getPOSTCODE());
+                result.setSTRAATNAAMNEN(locatie.getSTRAATNAAMNEN());
+                result.setTXCOORD(locatie.getTXCOORD());
+                result.setTYCOORD(locatie.getTYCOORD());
             }
+            return result;
         }
 
         /**
