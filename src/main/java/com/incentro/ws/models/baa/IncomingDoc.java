@@ -529,7 +529,7 @@ public class IncomingDoc {
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
+    @XmlType(name = "LocatieBAA", propOrder = {
         "straatnaamnen",
         "postcode",
         "huispaalnr",

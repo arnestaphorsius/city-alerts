@@ -1,14 +1,14 @@
 
 package main.java.com.incentro.ws.models.mk;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 /**
@@ -49,16 +49,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "waardemeldclass1",
     "waardemeldclass2",
     "waardemeldclass3",
-    "prioriteitincidentbrandweer",
+    "prioriteitincident",
     "dtgstartincident",
-    "straatnaamnen",
-    "postcode",
-    "huispaalnr",
-    "huisnrtoev",
-    "objecthuisnummertoevoeging",
-    "txcoord",
-    "tycoord",
-    "codevoertuigsoort"
+    "locatie",
+    "betrokkenhulpdiensten"
 })
 public class IncomingDoc {
 
@@ -70,32 +64,20 @@ public class IncomingDoc {
     protected String waardemeldclass2;
     @XmlElement(name = "WAARDE_MELD_CLASS_3", required = true)
     protected String waardemeldclass3;
-    @XmlElement(name = "PRIORITEIT_INCIDENT_BRANDWEER", required = true)
-    protected String prioriteitincidentbrandweer;
+    @XmlElement(name = "PRIORITEIT_INCIDENT", required = true)
+    protected String prioriteitincident;
     @XmlElement(name = "DTG_START_INCIDENT", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar dtgstartincident;
-    @XmlElement(name = "STRAATNAAM_NEN", required = true)
-    protected String straatnaamnen;
-    @XmlElement(name = "POSTCODE", required = true)
-    protected String postcode;
-    @XmlElement(name = "HUIS_PAAL_NR", required = true)
-    protected BigInteger huispaalnr;
-    @XmlElement(name = "HUIS_NR_TOEV", required = true)
-    protected String huisnrtoev;
-    @XmlElement(name = "OBJECT_HUISNUMMERTOEVOEGING", required = true)
-    protected String objecthuisnummertoevoeging;
-    @XmlElement(name = "T_X_COORD", required = true)
-    protected BigDecimal txcoord;
-    @XmlElement(name = "T_Y_COORD", required = true)
-    protected BigDecimal tycoord;
-    @XmlElement(name = "CODE_VOERTUIGSOORT", required = true)
-    protected String codevoertuigsoort;
+    @XmlElement(name = "Locatie", required = true)
+    protected IncomingDoc.Locatie locatie;
+    @XmlElement(name = "Betrokken_Hulpdiensten", required = true)
+    protected String betrokkenhulpdiensten;
 
     public IncomingDoc() {}
 
-    public IncomingDoc(String codevoertuigsoort) {
-        this.codevoertuigsoort = codevoertuigsoort;
+    public IncomingDoc(String betrokkenhulpdiensten) {
+        this.betrokkenhulpdiensten = betrokkenhulpdiensten;
     }
     /**
      * Gets the value of the incidentid property.
@@ -201,8 +183,8 @@ public class IncomingDoc {
      *     {@link String }
      *     
      */
-    public String getPRIORITEITINCIDENTBRANDWEER() {
-        return prioriteitincidentbrandweer;
+    public String getPRIORITEITINCIDENT() {
+        return prioriteitincident;
     }
 
     /**
@@ -213,8 +195,8 @@ public class IncomingDoc {
      *     {@link String }
      *     
      */
-    public void setPRIORITEITINCIDENTBRANDWEER(String value) {
-        this.prioriteitincidentbrandweer = value;
+    public void setPRIORITEITINCIDENT(String value) {
+        this.prioriteitincident = value;
     }
 
     /**
@@ -242,195 +224,210 @@ public class IncomingDoc {
     }
 
     /**
-     * Gets the value of the straatnaamnen property.
+     * Gets the value of the locatie property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Locatie }
      *     
      */
-    public String getSTRAATNAAMNEN() {
-        return straatnaamnen;
+    public IncomingDoc.Locatie getLocatie() {
+        return locatie;
     }
 
     /**
-     * Sets the value of the straatnaamnen property.
+     * Sets the value of the locatie property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Locatie }
      *     
      */
-    public void setSTRAATNAAMNEN(String value) {
-        this.straatnaamnen = value;
+    public void setLocatie(IncomingDoc.Locatie value) {
+        this.locatie = value;
     }
 
     /**
-     * Gets the value of the postcode property.
-     * 
+     * Gets the value of the betrokkenhulpdiensten property.
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
-    public String getPOSTCODE() {
-        return postcode;
+    public String getBetrokkenHulpdiensten() {
+        return this.betrokkenhulpdiensten;
     }
 
     /**
-     * Sets the value of the postcode property.
-     * 
+     * Sets the value of the betrokkenhulpdiensten property.
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
-    public void setPOSTCODE(String value) {
-        this.postcode = value;
+    public void setBetrokkenhulpdiensten(String value) {
+        this.betrokkenhulpdiensten = value;
     }
 
-    /**
-     * Gets the value of the huispaalnr property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getHUISPAALNR() {
-        return huispaalnr;
-    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "Locatie", propOrder = {
+        "adres",
+        "geolocatie",
+        "bag"
+    })
+    public static class Locatie {
 
-    /**
-     * Sets the value of the huispaalnr property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setHUISPAALNR(BigInteger value) {
-        this.huispaalnr = value;
-    }
+        @XmlElement(name = "Adres", required = true)
+        protected Locatie.Adres adres;
+        @XmlElement(name = "Geolocatie", required = true)
+        protected Locatie.Geolocatie geolocatie;
+        @XmlElement(name = "BAG", required = true)
+        protected Locatie.BAG bag;
 
-    /**
-     * Gets the value of the huisnrtoev property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getHUISNRTOEV() {
-        return huisnrtoev;
-    }
+        public Adres getAdres() {
+            return adres;
+        }
 
-    /**
-     * Sets the value of the huisnrtoev property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setHUISNRTOEV(String value) {
-        this.huisnrtoev = value;
-    }
+        public void setAdres(Adres adres) {
+            this.adres = adres;
+        }
 
-    /**
-     * Gets the value of the objecthuisnummertoevoeging property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOBJECTHUISNUMMERTOEVOEGING() {
-        return objecthuisnummertoevoeging;
-    }
+        public Geolocatie getGeolocatie() {
+            return geolocatie;
+        }
 
-    /**
-     * Sets the value of the objecthuisnummertoevoeging property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setOBJECTHUISNUMMERTOEVOEGING(String value) {
-        this.objecthuisnummertoevoeging = value;
-    }
+        public void setGeolocatie(Geolocatie geolocatie) {
+            this.geolocatie = geolocatie;
+        }
 
-    /**
-     * Gets the value of the txcoord property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTXCOORD() {
-        return txcoord;
-    }
+        public BAG getBag() {
+            return bag;
+        }
 
-    /**
-     * Sets the value of the txcoord property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTXCOORD(BigDecimal value) {
-        this.txcoord = value;
-    }
+        public void setBag(BAG bag) {
+            this.bag = bag;
+        }
 
-    /**
-     * Gets the value of the tycoord property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getTYCOORD() {
-        return tycoord;
-    }
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "straatnaamnen",
+            "postcode",
+            "huispaalnr",
+            "huisnrtoev",
+            "objecthuisnummertoevoeging"
+        })
+        public static class Adres {
 
-    /**
-     * Sets the value of the tycoord property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setTYCOORD(BigDecimal value) {
-        this.tycoord = value;
-    }
+            @XmlElement(name = "STRAATNAAM_NEN", required = true)
+            protected String straatnaamnen;
+            @XmlElement(name = "POSTCODE", required = true)
+            protected String postcode;
+            @XmlElement(name = "HUIS_PAAL_NR", required = true)
+            protected BigInteger huispaalnr;
+            @XmlElement(name = "HUIS_NR_TOEV", required = true)
+            protected String huisnrtoev;
+            @XmlElement(name = "OBJECT_HUISNUMMERTOEVOEGING", required = true)
+            protected String objecthuisnummertoevoeging;
 
-    /**
-     * Gets the value of the codevoertuigsoort property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCODEVOERTUIGSOORT() {
-        return codevoertuigsoort;
-    }
+            public String getStraatnaamnen() {
+                return straatnaamnen;
+            }
 
-    /**
-     * Sets the value of the codevoertuigsoort property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCODEVOERTUIGSOORT(String value) {
-        this.codevoertuigsoort = value;
-    }
+            public void setStraatnaamnen(String straatnaamnen) {
+                this.straatnaamnen = straatnaamnen;
+            }
 
+            public String getPostcode() {
+                return postcode;
+            }
+
+            public void setPostcode(String postcode) {
+                this.postcode = postcode;
+            }
+
+            public BigInteger getHuispaalnr() {
+                return huispaalnr;
+            }
+
+            public void setHuispaalnr(BigInteger huispaalnr) {
+                this.huispaalnr = huispaalnr;
+            }
+
+            public String getHuisnrtoev() {
+                return huisnrtoev;
+            }
+
+            public void setHuisnrtoev(String huisnrtoev) {
+                this.huisnrtoev = huisnrtoev;
+            }
+
+            public String getObjecthuisnummertoevoeging() {
+                return objecthuisnummertoevoeging;
+            }
+
+            public void setObjecthuisnummertoevoeging(String objecthuisnummertoevoeging) {
+                this.objecthuisnummertoevoeging = objecthuisnummertoevoeging;
+            }
+        }
+
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "txcoord",
+            "tycoord"
+        })
+        public static class Geolocatie {
+
+            @XmlElement(name = "T_X_COORD", required = true)
+            protected BigDecimal txcoord;
+            @XmlElement(name = "T_Y_COORD", required = true)
+            protected BigDecimal tycoord;
+
+            public BigDecimal getTxcoord() {
+                return txcoord;
+            }
+
+            public void setTxcoord(BigDecimal txcoord) {
+                this.txcoord = txcoord;
+            }
+
+            public BigDecimal getTycoord() {
+                return tycoord;
+            }
+
+            public void setTycoord(BigDecimal tycoord) {
+                this.tycoord = tycoord;
+            }
+        }
+
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "bagid",
+            "bagversie"
+        })
+        public static class BAG {
+
+            @XmlElement(name = "BAG_ID", required = true)
+            protected BigDecimal bagid;
+            @XmlElement(name = "BAG_versie", required = true)
+            protected BigDecimal bagversie;
+
+            public BigDecimal getBagid() {
+                return bagid;
+            }
+
+            public void setBagid(BigDecimal bagid) {
+                this.bagid = bagid;
+            }
+
+            public BigDecimal getBagversie() {
+                return bagversie;
+            }
+
+            public void setBagversie(BigDecimal bagversie) {
+                this.bagversie = bagversie;
+            }
+        }
+    }
 }
