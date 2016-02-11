@@ -4,6 +4,7 @@ package main.java.com.incentro.ws.models.baa;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import main.java.com.incentro.ws.models.baa.IncomingDoc.Locatie;
 
 
 /**
@@ -89,7 +90,7 @@ public class ResultDoc {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar dtgstartincident;
     @XmlElement(name = "Locatie", required = true)
-    protected IncomingDoc.Locatie locatie;
+    protected Locatie locatie;
     @XmlElement(name = "Indicator", required = true)
     protected ResultDoc.Indicator indicator;
 
@@ -101,7 +102,9 @@ public class ResultDoc {
         if (incomingDoc == null) return result;
 
         result.setINCIDENTID(incomingDoc.getINCIDENTID());
-        result.setLocatie(IncomingDoc.Locatie.apply(incomingDoc.getLocatie()));
+        result.setPrioriteitincident(incomingDoc.getPRIORITEITINCIDENT());
+        result.setDtgstartincident(incomingDoc.getDTGSTARTINCIDENT());
+        result.setLocatie(incomingDoc.getLocatie());
 
         return result;
     }
@@ -150,10 +153,10 @@ public class ResultDoc {
      * 
      * @return
      *     possible object is
-     *     {@link IncomingDoc.Locatie }
+     *     {@link Locatie }
      *     
      */
-    public IncomingDoc.Locatie getLocatie() {
+    public Locatie getLocatie() {
         return locatie;
     }
 
@@ -162,10 +165,10 @@ public class ResultDoc {
      * 
      * @param value
      *     allowed object is
-     *     {@link IncomingDoc.Locatie }
+     *     {@link Locatie }
      *     
      */
-    public void setLocatie(IncomingDoc.Locatie value) {
+    public void setLocatie(Locatie value) {
         this.locatie = value;
     }
 

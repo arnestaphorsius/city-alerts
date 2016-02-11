@@ -133,7 +133,7 @@ public class IncomingDoc {
      *     {@link String }
      *     
      */
-    public String getPRIORITEITINCIDENTBRANDWEER() {
+    public String getPRIORITEITINCIDENT() {
         return prioriteitincident;
     }
 
@@ -145,7 +145,7 @@ public class IncomingDoc {
      *     {@link String }
      *     
      */
-    public void setPRIORITEITINCIDENTBRANDWEER(String value) {
+    public void setPRIORITEITINCIDENT(String value) {
         this.prioriteitincident = value;
     }
 

@@ -1,5 +1,5 @@
 
-package main.java.com.incentro.ws.models.mk;
+package main.java.com.incentro.ws.models.bm;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
