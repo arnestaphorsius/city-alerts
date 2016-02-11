@@ -6,71 +6,9 @@ import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 import main.java.com.incentro.ws.models.baa.IncomingDoc.Locatie;
 
-
 /**
- * <p>Java class for ResultDoc complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="ResultDoc">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="INCIDENT_ID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Resultaatcode" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Locatie">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="STRAATNAAM_NEN" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *                   &lt;element name="POSTCODE" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *                   &lt;element name="HUIS_PAAL_NR" type="{http://www.w3.org/2001/XMLSchema}integer"/>
- *                   &lt;element name="HUIS_NR_TOEV" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *                   &lt;element name="OBJECT_HUISNUMMERTOEVOEGING" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *                   &lt;element name="T_X_COORD" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
- *                   &lt;element name="T_Y_COORD" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="Indicator_Risico_object">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="Label" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                   &lt;element name="Kleurcode" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                   &lt;element name="AanvullendeInformatie" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="Indicator_Milieuvergunning">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="Gevraagd" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                   &lt;element name="ToegestaneKleurcode_Wit" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                   &lt;element name="ToegestaneKleurcode_Blauw" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                   &lt;element name="ToegestaneKleurcode_Oranje" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                   &lt;element name="ToegestaneKleurcode_Rood" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * @author Arne Staphorsius.
+ * @since 2-2-2016
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ResultDocBAA", propOrder = {

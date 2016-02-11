@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class BerichtVraag {
 
     @XmlElement(name = "Vraag", required = true)
-    protected main.java.com.incentro.ws.models.baa.IncomingDoc vraag;
+    protected IncomingDoc vraag;
 
     /**
      * Gets the value of the vraag property.
