@@ -23,10 +23,7 @@ public class ServiceSoapImpl implements ServiceSoap {
   @Override
   public main.java.com.incentro.ws.models.bm.ResultDoc berichtMelding(main.java.com.incentro.ws.models.bm.IncomingDoc melding) {
 
-    main.java.com.incentro.ws.models.bm.ResultDoc resultDoc = new main.java.com.incentro.ws.models.bm.ResultDoc();
-    resultDoc.setKleurcode("Rood");
-
-    return resultDoc;
+    return main.java.com.incentro.ws.models.bm.ResultDoc.apply(melding);
   }
 
   @Override

@@ -84,6 +84,34 @@ public class ResultDoc {
     @XmlElement(name = "AanvullendeInfo", required = true)
     protected String aanvullendeInfo;
 
+    public static ResultDoc apply(IncomingDoc incomingDoc) {
+        ResultDoc result = new ResultDoc();
+
+        if (incomingDoc == null) return result;
+
+        result.setINCIDENTID(incomingDoc.getINCIDENTID());
+
+        if (incomingDoc.getLocatie() != null) {
+
+            IncomingDoc.Locatie.Adres adres = incomingDoc.getLocatie().getAdres();
+            if (adres != null) {
+                result.setSTRAATNAAMNEN(adres.getStraatnaamnen());
+                result.setPOSTCODE(adres.getPostcode());
+                result.setHUISPAALNR(adres.getHuispaalnr());
+                result.setHUISNRTOEV(adres.getHuisnrtoev());
+                result.setOBJECTHUISNUMMERTOEVOEGING(adres.getObjecthuisnummertoevoeging());
+            }
+
+            IncomingDoc.Locatie.Geolocatie geolocatie = incomingDoc.getLocatie().getGeolocatie();
+            if (geolocatie != null) {
+                result.setTXCOORD(String.valueOf(geolocatie.getTxcoord()));
+                result.setTYCOORD(String.valueOf(geolocatie.getTycoord()));
+            }
+        }
+
+        return result;
+    }
+
     /**
      * Gets the value of the incidentid property.
      * 
