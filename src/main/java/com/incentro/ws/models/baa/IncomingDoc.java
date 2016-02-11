@@ -82,27 +82,24 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "IncomingDocBAA", propOrder = {
     "incidentid",
-    "prioriteitincidentbrandweer",
+    "prioriteitincident",
     "dtgstartincident",
     "locatie",
-    "indicatorRisicoObject",
-    "indicatorMilieuvergunning"
+    "indicator"
 })
 public class IncomingDoc {
 
     @XmlElement(name = "INCIDENT_ID", required = true)
     protected String incidentid;
-    @XmlElement(name = "PRIORITEIT_INCIDENT_BRANDWEER", required = true)
-    protected String prioriteitincidentbrandweer;
+    @XmlElement(name = "PRIORITEIT_INCIDENT", required = true)
+    protected String prioriteitincident;
     @XmlElement(name = "DTG_START_INCIDENT", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar dtgstartincident;
     @XmlElement(name = "Locatie", required = true)
     protected IncomingDoc.Locatie locatie;
-    @XmlElement(name = "Indicator_Risico_object", required = true)
-    protected IncomingDoc.IndicatorRisicoObject indicatorRisicoObject;
-    @XmlElement(name = "Indicator_Milieuvergunning", required = true)
-    protected IncomingDoc.IndicatorMilieuvergunning indicatorMilieuvergunning;
+    @XmlElement(name = "Indicator", required = true)
+    protected IncomingDoc.Indicator indicator;
 
     /**
      * Gets the value of the incidentid property.
@@ -129,7 +126,7 @@ public class IncomingDoc {
     }
 
     /**
-     * Gets the value of the prioriteitincidentbrandweer property.
+     * Gets the value of the prioriteitincident property.
      * 
      * @return
      *     possible object is
@@ -137,11 +134,11 @@ public class IncomingDoc {
      *     
      */
     public String getPRIORITEITINCIDENTBRANDWEER() {
-        return prioriteitincidentbrandweer;
+        return prioriteitincident;
     }
 
     /**
-     * Sets the value of the prioriteitincidentbrandweer property.
+     * Sets the value of the prioriteitincident property.
      * 
      * @param value
      *     allowed object is
@@ -149,7 +146,7 @@ public class IncomingDoc {
      *     
      */
     public void setPRIORITEITINCIDENTBRANDWEER(String value) {
-        this.prioriteitincidentbrandweer = value;
+        this.prioriteitincident = value;
     }
 
     /**
@@ -205,11 +202,11 @@ public class IncomingDoc {
      * 
      * @return
      *     possible object is
-     *     {@link IncomingDoc.IndicatorRisicoObject }
+     *     {@link IncomingDoc.Indicator }
      *     
      */
-    public IncomingDoc.IndicatorRisicoObject getIndicatorRisicoObject() {
-        return indicatorRisicoObject;
+    public IncomingDoc.Indicator getIndicator() {
+        return indicator;
     }
 
     /**
@@ -217,512 +214,223 @@ public class IncomingDoc {
      * 
      * @param value
      *     allowed object is
-     *     {@link IncomingDoc.IndicatorRisicoObject }
+     *     {@link IncomingDoc.Indicator }
      *     
      */
-    public void setIndicatorRisicoObject(IncomingDoc.IndicatorRisicoObject value) {
-        this.indicatorRisicoObject = value;
+    public void setIndicator(IncomingDoc.Indicator value) {
+        this.indicator = value;
     }
 
-    /**
-     * Gets the value of the indicatorMilieuvergunning property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link IncomingDoc.IndicatorMilieuvergunning }
-     *     
-     */
-    public IncomingDoc.IndicatorMilieuvergunning getIndicatorMilieuvergunning() {
-        return indicatorMilieuvergunning;
-    }
-
-    /**
-     * Sets the value of the indicatorMilieuvergunning property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IncomingDoc.IndicatorMilieuvergunning }
-     *     
-     */
-    public void setIndicatorMilieuvergunning(IncomingDoc.IndicatorMilieuvergunning value) {
-        this.indicatorMilieuvergunning = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="Gevraagd" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Wit" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Blauw" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Oranje" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Rood" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "gevraagd",
-        "toegestaneKleurcodeWit",
-        "toegestaneKleurcodeBlauw",
-        "toegestaneKleurcodeOranje",
-        "toegestaneKleurcodeRood"
-    })
-    public static class IndicatorMilieuvergunning {
-
-        @XmlElement(name = "Gevraagd")
-        protected boolean gevraagd;
-        @XmlElement(name = "ToegestaneKleurcode_Wit")
-        protected boolean toegestaneKleurcodeWit;
-        @XmlElement(name = "ToegestaneKleurcode_Blauw")
-        protected boolean toegestaneKleurcodeBlauw;
-        @XmlElement(name = "ToegestaneKleurcode_Oranje")
-        protected boolean toegestaneKleurcodeOranje;
-        @XmlElement(name = "ToegestaneKleurcode_Rood")
-        protected boolean toegestaneKleurcodeRood;
-
-        /**
-         * Gets the value of the gevraagd property.
-         * 
-         */
-        public boolean isGevraagd() {
-            return gevraagd;
-        }
-
-        /**
-         * Sets the value of the gevraagd property.
-         * 
-         */
-        public void setGevraagd(boolean value) {
-            this.gevraagd = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeWit property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeWit() {
-            return toegestaneKleurcodeWit;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeWit property.
-         * 
-         */
-        public void setToegestaneKleurcodeWit(boolean value) {
-            this.toegestaneKleurcodeWit = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeBlauw property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeBlauw() {
-            return toegestaneKleurcodeBlauw;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeBlauw property.
-         * 
-         */
-        public void setToegestaneKleurcodeBlauw(boolean value) {
-            this.toegestaneKleurcodeBlauw = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeOranje property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeOranje() {
-            return toegestaneKleurcodeOranje;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeOranje property.
-         * 
-         */
-        public void setToegestaneKleurcodeOranje(boolean value) {
-            this.toegestaneKleurcodeOranje = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeRood property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeRood() {
-            return toegestaneKleurcodeRood;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeRood property.
-         * 
-         */
-        public void setToegestaneKleurcodeRood(boolean value) {
-            this.toegestaneKleurcodeRood = value;
-        }
-
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="Gevraagd" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Wit" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Blauw" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Oranje" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *         &lt;element name="ToegestaneKleurcode_Rood" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "gevraagd",
-        "toegestaneKleurcodeWit",
-        "toegestaneKleurcodeBlauw",
-        "toegestaneKleurcodeOranje",
-        "toegestaneKleurcodeRood"
-    })
-    public static class IndicatorRisicoObject {
-
-        @XmlElement(name = "Gevraagd")
-        protected boolean gevraagd;
-        @XmlElement(name = "ToegestaneKleurcode_Wit")
-        protected boolean toegestaneKleurcodeWit;
-        @XmlElement(name = "ToegestaneKleurcode_Blauw")
-        protected boolean toegestaneKleurcodeBlauw;
-        @XmlElement(name = "ToegestaneKleurcode_Oranje")
-        protected boolean toegestaneKleurcodeOranje;
-        @XmlElement(name = "ToegestaneKleurcode_Rood")
-        protected boolean toegestaneKleurcodeRood;
-
-        /**
-         * Gets the value of the gevraagd property.
-         * 
-         */
-        public boolean isGevraagd() {
-            return gevraagd;
-        }
-
-        /**
-         * Sets the value of the gevraagd property.
-         * 
-         */
-        public void setGevraagd(boolean value) {
-            this.gevraagd = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeWit property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeWit() {
-            return toegestaneKleurcodeWit;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeWit property.
-         * 
-         */
-        public void setToegestaneKleurcodeWit(boolean value) {
-            this.toegestaneKleurcodeWit = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeBlauw property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeBlauw() {
-            return toegestaneKleurcodeBlauw;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeBlauw property.
-         * 
-         */
-        public void setToegestaneKleurcodeBlauw(boolean value) {
-            this.toegestaneKleurcodeBlauw = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeOranje property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeOranje() {
-            return toegestaneKleurcodeOranje;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeOranje property.
-         * 
-         */
-        public void setToegestaneKleurcodeOranje(boolean value) {
-            this.toegestaneKleurcodeOranje = value;
-        }
-
-        /**
-         * Gets the value of the toegestaneKleurcodeRood property.
-         * 
-         */
-        public boolean isToegestaneKleurcodeRood() {
-            return toegestaneKleurcodeRood;
-        }
-
-        /**
-         * Sets the value of the toegestaneKleurcodeRood property.
-         * 
-         */
-        public void setToegestaneKleurcodeRood(boolean value) {
-            this.toegestaneKleurcodeRood = value;
-        }
-
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="STRAATNAAM_NEN" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *         &lt;element name="POSTCODE" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *         &lt;element name="HUIS_PAAL_NR" type="{http://www.w3.org/2001/XMLSchema}integer"/>
-     *         &lt;element name="HUIS_NR_TOEV" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *         &lt;element name="OBJECT_HUISNUMMERTOEVOEGING" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *         &lt;element name="T_X_COORD" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
-     *         &lt;element name="T_Y_COORD" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "LocatieBAA", propOrder = {
-        "straatnaamnen",
-        "postcode",
-        "huispaalnr",
-        "huisnrtoev",
-        "objecthuisnummertoevoeging",
-        "txcoord",
-        "tycoord"
+        "adres",
+        "geolocatie",
+        "bag"
     })
     public static class Locatie {
 
-        @XmlElement(name = "STRAATNAAM_NEN", required = true)
-        protected String straatnaamnen;
-        @XmlElement(name = "POSTCODE", required = true)
-        protected String postcode;
-        @XmlElement(name = "HUIS_PAAL_NR", required = true)
-        protected BigInteger huispaalnr;
-        @XmlElement(name = "HUIS_NR_TOEV", required = true)
-        protected String huisnrtoev;
-        @XmlElement(name = "OBJECT_HUISNUMMERTOEVOEGING", required = true)
-        protected String objecthuisnummertoevoeging;
-        @XmlElement(name = "T_X_COORD", required = true)
-        protected BigDecimal txcoord;
-        @XmlElement(name = "T_Y_COORD", required = true)
-        protected BigDecimal tycoord;
+        @XmlElement(name = "Adres", required = true)
+        protected Locatie.Adres adres;
+        @XmlElement(name = "Geolocatie", required = true)
+        protected Locatie.Geolocatie geolocatie;
+        @XmlElement(name = "BAG", required = true)
+        protected Locatie.BAG bag;
 
-        /**
-         * Gets the value of the straatnaamnen property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getSTRAATNAAMNEN() {
-            return straatnaamnen;
+        public Locatie() { }
+
+        public static Locatie apply(Locatie locatie) {
+
+            Locatie result = new Locatie();
+
+            if (locatie != null) {
+                if (locatie.adres != null) {
+                    result.adres = new Adres();
+                    result.adres.setHuisnrtoev(locatie.adres.getHuisnrtoev());
+                    result.adres.setHuispaalnr(locatie.adres.getHuispaalnr());
+                    result.adres.setObjecthuisnummertoevoeging(locatie.adres.getObjecthuisnummertoevoeging());
+                    result.adres.setPostcode(locatie.adres.getPostcode());
+                    result.adres.setStraatnaamnen(locatie.adres.getStraatnaamnen());
+                }
+                if (locatie.geolocatie != null) {
+                    result.geolocatie = new Geolocatie();
+                    result.geolocatie.setTxcoord(locatie.geolocatie.getTxcoord());
+                    result.geolocatie.setTycoord(locatie.geolocatie.getTycoord());
+                }
+            }
+            return result;
         }
 
-        /**
-         * Sets the value of the straatnaamnen property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setSTRAATNAAMNEN(String value) {
-            this.straatnaamnen = value;
+        public Adres getAdres() {
+            return adres;
         }
 
-        /**
-         * Gets the value of the postcode property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getPOSTCODE() {
-            return postcode;
+        public void setAdres(Adres adres) {
+            this.adres = adres;
         }
 
-        /**
-         * Sets the value of the postcode property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setPOSTCODE(String value) {
-            this.postcode = value;
+        public Geolocatie getGeolocatie() {
+            return geolocatie;
         }
 
-        /**
-         * Gets the value of the huispaalnr property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigInteger }
-         *     
-         */
-        public BigInteger getHUISPAALNR() {
-            return huispaalnr;
+        public void setGeolocatie(Geolocatie geolocatie) {
+            this.geolocatie = geolocatie;
         }
 
-        /**
-         * Sets the value of the huispaalnr property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigInteger }
-         *     
-         */
-        public void setHUISPAALNR(BigInteger value) {
-            this.huispaalnr = value;
+        public BAG getBag() {
+            return bag;
         }
 
-        /**
-         * Gets the value of the huisnrtoev property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getHUISNRTOEV() {
-            return huisnrtoev;
+        public void setBag(BAG bag) {
+            this.bag = bag;
         }
 
-        /**
-         * Sets the value of the huisnrtoev property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setHUISNRTOEV(String value) {
-            this.huisnrtoev = value;
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "straatnaamnen",
+            "postcode",
+            "huispaalnr",
+            "huisnrtoev",
+            "objecthuisnummertoevoeging"
+        })
+        public static class Adres {
+
+            @XmlElement(name = "STRAATNAAM_NEN", required = true)
+            protected String straatnaamnen;
+            @XmlElement(name = "POSTCODE", required = true)
+            protected String postcode;
+            @XmlElement(name = "HUIS_PAAL_NR", required = true)
+            protected BigInteger huispaalnr;
+            @XmlElement(name = "HUIS_NR_TOEV", required = true)
+            protected String huisnrtoev;
+            @XmlElement(name = "OBJECT_HUISNUMMERTOEVOEGING", required = true)
+            protected String objecthuisnummertoevoeging;
+
+            public String getStraatnaamnen() {
+                return straatnaamnen;
+            }
+
+            public void setStraatnaamnen(String straatnaamnen) {
+                this.straatnaamnen = straatnaamnen;
+            }
+
+            public String getPostcode() {
+                return postcode;
+            }
+
+            public void setPostcode(String postcode) {
+                this.postcode = postcode;
+            }
+
+            public BigInteger getHuispaalnr() {
+                return huispaalnr;
+            }
+
+            public void setHuispaalnr(BigInteger huispaalnr) {
+                this.huispaalnr = huispaalnr;
+            }
+
+            public String getHuisnrtoev() {
+                return huisnrtoev;
+            }
+
+            public void setHuisnrtoev(String huisnrtoev) {
+                this.huisnrtoev = huisnrtoev;
+            }
+
+            public String getObjecthuisnummertoevoeging() {
+                return objecthuisnummertoevoeging;
+            }
+
+            public void setObjecthuisnummertoevoeging(String objecthuisnummertoevoeging) {
+                this.objecthuisnummertoevoeging = objecthuisnummertoevoeging;
+            }
         }
 
-        /**
-         * Gets the value of the objecthuisnummertoevoeging property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getOBJECTHUISNUMMERTOEVOEGING() {
-            return objecthuisnummertoevoeging;
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "txcoord",
+            "tycoord"
+        })
+        public static class Geolocatie {
+
+            @XmlElement(name = "T_X_COORD", required = true)
+            protected BigDecimal txcoord;
+            @XmlElement(name = "T_Y_COORD", required = true)
+            protected BigDecimal tycoord;
+
+            public BigDecimal getTxcoord() {
+                return txcoord;
+            }
+
+            public void setTxcoord(BigDecimal txcoord) {
+                this.txcoord = txcoord;
+            }
+
+            public BigDecimal getTycoord() {
+                return tycoord;
+            }
+
+            public void setTycoord(BigDecimal tycoord) {
+                this.tycoord = tycoord;
+            }
         }
 
-        /**
-         * Sets the value of the objecthuisnummertoevoeging property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setOBJECTHUISNUMMERTOEVOEGING(String value) {
-            this.objecthuisnummertoevoeging = value;
-        }
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "bagid",
+            "bagversie"
+        })
+        public static class BAG {
 
-        /**
-         * Gets the value of the txcoord property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getTXCOORD() {
-            return txcoord;
-        }
+            @XmlElement(name = "BAG_ID", required = true)
+            protected BigDecimal bagid;
+            @XmlElement(name = "BAG_versie", required = true)
+            protected BigDecimal bagversie;
 
-        /**
-         * Sets the value of the txcoord property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setTXCOORD(BigDecimal value) {
-            this.txcoord = value;
-        }
+            public BigDecimal getBagid() {
+                return bagid;
+            }
 
-        /**
-         * Gets the value of the tycoord property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getTYCOORD() {
-            return tycoord;
-        }
+            public void setBagid(BigDecimal bagid) {
+                this.bagid = bagid;
+            }
 
-        /**
-         * Sets the value of the tycoord property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setTYCOORD(BigDecimal value) {
-            this.tycoord = value;
-        }
+            public BigDecimal getBagversie() {
+                return bagversie;
+            }
 
+            public void setBagversie(BigDecimal bagversie) {
+                this.bagversie = bagversie;
+            }
+        }
     }
 
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name="", propOrder = {
+        "gevraagdeindicator",
+        "maximaaltoegestaanwaarschuwingsniveau"
+    })
+    public static class Indicator {
+
+        @XmlElement(name = "GevraagdeIndicator", required = true)
+        protected String gevraagdeindicator;
+        @XmlElement(name = "MaximaalToegestaanWaarschuwingsniveau", required = true)
+        protected BigInteger maximaaltoegestaanwaarschuwingsniveau;
+
+        public String getGevraagdeindicator() {
+            return gevraagdeindicator;
+        }
+
+        public void setGevraagdeindicator(String gevraagdeindicator) {
+            this.gevraagdeindicator = gevraagdeindicator;
+        }
+
+        public BigInteger getMaximaaltoegestaanwaarschuwingsniveau() {
+            return maximaaltoegestaanwaarschuwingsniveau;
+        }
+
+        public void setMaximaaltoegestaanwaarschuwingsniveau(BigInteger maximaaltoegestaanwaarschuwingsniveau) {
+            this.maximaaltoegestaanwaarschuwingsniveau = maximaaltoegestaanwaarschuwingsniveau;
+        }
+    }
 }

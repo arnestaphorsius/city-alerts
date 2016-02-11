@@ -69,43 +69,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IncomingDoc.IndicatorRisicoObject }
+     * Create an instance of {@link IncomingDoc.Indicator }
      * 
      */
-    public IncomingDoc.IndicatorRisicoObject createIncomingDocIndicatorRisicoObject() {
-        return new IncomingDoc.IndicatorRisicoObject();
-    }
-
-    /**
-     * Create an instance of {@link IncomingDoc.IndicatorMilieuvergunning }
-     * 
-     */
-    public IncomingDoc.IndicatorMilieuvergunning createIncomingDocIndicatorMilieuvergunning() {
-        return new IncomingDoc.IndicatorMilieuvergunning();
-    }
-
-    /**
-     * Create an instance of {@link ResultDoc.Locatie }
-     * 
-     */
-    public ResultDoc.Locatie createResultDocLocatie() {
-        return new ResultDoc.Locatie();
-    }
-
-    /**
-     * Create an instance of {@link ResultDoc.IndicatorRisicoObject }
-     * 
-     */
-    public ResultDoc.IndicatorRisicoObject createResultDocIndicatorRisicoObject() {
-        return new ResultDoc.IndicatorRisicoObject();
-    }
-
-    /**
-     * Create an instance of {@link ResultDoc.IndicatorMilieuvergunning }
-     * 
-     */
-    public ResultDoc.IndicatorMilieuvergunning createResultDocIndicatorMilieuvergunning() {
-        return new ResultDoc.IndicatorMilieuvergunning();
+    public IncomingDoc.Indicator createIncomingDocIndicator() {
+        return new IncomingDoc.Indicator();
     }
 
 }

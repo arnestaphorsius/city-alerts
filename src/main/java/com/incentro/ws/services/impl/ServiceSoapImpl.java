@@ -32,11 +32,6 @@ public class ServiceSoapImpl implements ServiceSoap {
   @Override
   public ResultDoc cityAlertDataRequest(IncomingDoc request) {
 
-    ResultDoc result = ResultDoc.apply(request);
-
-    result.setIndicatorMilieuvergunning(new ResultDoc.IndicatorMilieuvergunning());
-    //result.setIndicatorRisicoObject(new ResultDoc.IndicatorRisicoObject());
-
-    return result;
+    return ResultDoc.apply(request);
   }
 }
