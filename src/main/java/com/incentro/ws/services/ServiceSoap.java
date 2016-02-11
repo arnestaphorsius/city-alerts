@@ -28,13 +28,13 @@ import javax.xml.ws.ResponseWrapper;
 public interface ServiceSoap {
 
   /**
-   * @param melding models.IncomingDoc
-   * @return models.ResultDoc
+   * @param melding models.bm.IncomingDoc
+   * @return models.bm.ResultDoc
    */
   @WebMethod(action = "http://localhost:8088/ServiceSoap/BerichtMelding", operationName = "BerichtMelding")
   @WebResult(name = "Antwoord", targetNamespace = "http://localhost:8088/ServiceSoap/")
-  @RequestWrapper(localName = "BerichtMelding", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.mk.BerichtMelding", partName = "parameter")
-  @ResponseWrapper(localName = "BerichtendienstAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.mk.BerichtendienstAntwoord", partName = "parameter")
+  @RequestWrapper(localName = "BerichtMelding", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.bm.BerichtMelding", partName = "parameter")
+  @ResponseWrapper(localName = "BerichtendienstAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.bm.BerichtendienstAntwoord", partName = "parameter")
   ResultDoc berichtMelding(
       @WebParam(name = "Melding", targetNamespace = "http://localhost:8088/ServiceSoap/")
       IncomingDoc melding);
