@@ -1,5 +1,5 @@
 
-package main.java.com.incentro.ws.models;
+package main.java.com.incentro.ws.clients;
 
 import main.java.com.incentro.ws.services.ServiceSoap;
 
