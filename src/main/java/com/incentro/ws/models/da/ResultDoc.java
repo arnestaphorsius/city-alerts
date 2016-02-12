@@ -8,7 +8,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @since 11-2-2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ResultDocDA", propOrder = {
+@XmlType(name = "ResultDoc", propOrder = {
     "incidentid",
     "dtgstartincident",
     "resultaatcode",

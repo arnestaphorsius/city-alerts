@@ -32,9 +32,4 @@ public class ServiceSoapImpl implements ServiceSoap {
     return ResultDoc.apply(request);
   }
 
-  @Override
-  public main.java.com.incentro.ws.models.da.ResultDoc cityAlertDataResponse(main.java.com.incentro.ws.models.da.IncomingDoc melding) {
-
-    return main.java.com.incentro.ws.models.da.ResultDoc.apply(melding);
-  }
 }

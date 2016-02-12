@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.*;
  * @since 11-2-2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BerichtVraagDA", propOrder = {
+@XmlType(name = "BerichtVraag", namespace = "http://localhost:8088/DataResponse/", propOrder = {
     "vraag"
 })
 public class BerichtVraag {
