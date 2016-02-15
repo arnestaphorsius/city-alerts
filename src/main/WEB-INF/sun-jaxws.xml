@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns='http://java.sun.com/xml/ns/jax-ws/ri/runtime'
+           version='2.0'>
+    <endpoint name='SoapService'
+              implementation='main.java.com.incentro.ws.services.impl.ServiceSoapImpl'
+              url-pattern='/ServiceSoap'/>
+    <endpoint name='DataResponse'
+              implementation='main.java.com.incentro.ws.services.impl.DataResponseImpl'
+              url-pattern='/DataResponse'/>
+    <endpoint name='StatusResponse'
+              implementation='main.java.com.incentro.ws.services.impl.StatusResponseImpl'
+              url-pattern='/StatusResponse'/>
+</endpoints>
