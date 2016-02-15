@@ -4,6 +4,9 @@
     <endpoint name='SoapService'
               implementation='main.java.com.incentro.ws.services.impl.ServiceSoapImpl'
               url-pattern='/ServiceSoap'/>
+    <endpoint name='DataRequest'
+              implementation='main.java.com.incentro.ws.services.impl.DataRequestImpl'
+              url-pattern='/DataRequest'/>
     <endpoint name='DataResponse'
               implementation='main.java.com.incentro.ws.services.impl.DataResponseImpl'
               url-pattern='/DataResponse'/>

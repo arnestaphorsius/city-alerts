@@ -1,5 +1,4 @@
-
-package main.java.com.incentro.ws.models.baa;
+package main.java.com.incentro.ws.models.dr;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
+@XmlType(name = "BerichtVraag", namespace = "http://localhost:8088/DataRequest/", propOrder = {
     "vraag"
 })
 @XmlRootElement(name = "BerichtVraag")

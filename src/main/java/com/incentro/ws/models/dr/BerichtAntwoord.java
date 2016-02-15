@@ -1,5 +1,4 @@
-
-package main.java.com.incentro.ws.models.baa;
+package main.java.com.incentro.ws.models.dr;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -1,5 +1,4 @@
-
-package main.java.com.incentro.ws.models.baa;
+package main.java.com.incentro.ws.models.dr;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -80,7 +79,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "IncomingDocBAA", propOrder = {
+@XmlType(name = "IncomingDoc", propOrder = {
     "incidentid",
     "prioriteitincident",
     "dtgstartincident",
@@ -222,7 +221,7 @@ public class IncomingDoc {
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "LocatieBAA", propOrder = {
+    @XmlType(name = "Locatie", propOrder = {
         "adres",
         "geolocatie",
         "bag"

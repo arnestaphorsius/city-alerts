@@ -39,16 +39,4 @@ public interface ServiceSoap {
       @WebParam(name = "Melding", targetNamespace = "http://localhost:8088/ServiceSoap/")
       IncomingDoc melding);
 
-  /**
-   * @param vraag models.baa.IncomingDoc
-   * @return models.baa.ResultDoc
-   */
-  @WebMethod(action = "http://localhost:8088/ServiceSoap/CityAlertDataRequest", operationName = "CityAlertDataRequest")
-  @WebResult(name = "Antwoord", targetNamespace = "http://localhost:8088/ServiceSoap/")
-  @RequestWrapper(localName = "BerichtVraag", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtVraag", partName = "parameter")
-  @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "http://localhost:8088/ServiceSoap/", className = "models.baa.BerichtAntwoord", partName = "parameter")
-  main.java.com.incentro.ws.models.baa.ResultDoc cityAlertDataRequest(
-      @WebParam(name = "Vraag", targetNamespace = "http://localhost:8088/ServiceSoap/")
-      main.java.com.incentro.ws.models.baa.IncomingDoc vraag);
-
 }

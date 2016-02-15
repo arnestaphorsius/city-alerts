@@ -1,17 +1,16 @@
 
-package main.java.com.incentro.ws.models.baa;
+package main.java.com.incentro.ws.models.dr;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
-import main.java.com.incentro.ws.models.baa.IncomingDoc.Locatie;
 
 /**
  * @author Arne Staphorsius.
  * @since 2-2-2016
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ResultDocBAA", propOrder = {
+@XmlType(name = "ResultDoc", propOrder = {
     "incidentid",
     "prioriteitincident",
     "dtgstartincident",
@@ -28,7 +27,7 @@ public class ResultDoc {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar dtgstartincident;
     @XmlElement(name = "Locatie", required = true)
-    protected Locatie locatie;
+    protected IncomingDoc.Locatie locatie;
     @XmlElement(name = "Indicator", required = true)
     protected ResultDoc.Indicator indicator;
 
@@ -91,10 +90,10 @@ public class ResultDoc {
      * 
      * @return
      *     possible object is
-     *     {@link Locatie }
+     *     {@link IncomingDoc.Locatie }
      *     
      */
-    public Locatie getLocatie() {
+    public IncomingDoc.Locatie getLocatie() {
         return locatie;
     }
 
@@ -103,10 +102,10 @@ public class ResultDoc {
      * 
      * @param value
      *     allowed object is
-     *     {@link Locatie }
+     *     {@link IncomingDoc.Locatie }
      *     
      */
-    public void setLocatie(Locatie value) {
+    public void setLocatie(IncomingDoc.Locatie value) {
         this.locatie = value;
     }
 

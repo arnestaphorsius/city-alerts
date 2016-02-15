@@ -1,8 +1,8 @@
 package main.java.com.incentro.ws.services.impl;
 
 import main.java.com.incentro.core.util.App;
-import main.java.com.incentro.ws.models.baa.IncomingDoc;
-import main.java.com.incentro.ws.models.baa.ResultDoc;
+import main.java.com.incentro.ws.models.bm.IncomingDoc;
+import main.java.com.incentro.ws.models.bm.ResultDoc;
 import main.java.com.incentro.ws.services.ServiceSoap;
 
 import javax.annotation.PostConstruct;
@@ -26,15 +26,9 @@ public class ServiceSoapImpl implements ServiceSoap {
   }
 
   @Override
-  public main.java.com.incentro.ws.models.bm.ResultDoc berichtMelding(main.java.com.incentro.ws.models.bm.IncomingDoc melding) {
+  public ResultDoc berichtMelding(IncomingDoc melding) {
 
-    return main.java.com.incentro.ws.models.bm.ResultDoc.apply(melding);
-  }
-
-  @Override
-  public ResultDoc cityAlertDataRequest(IncomingDoc request) {
-
-    return ResultDoc.apply(request);
+    return ResultDoc.apply(melding);
   }
 
 }
