@@ -8,7 +8,7 @@ public class Constants {
 
   public static class Properties {
 
-    public static final String FILE_LOCATION = "src/main/resources/config.properties";
+    public static final String FILE_LOCATION = "/config.properties";
   }
 
   public static class Database {

@@ -1,9 +1,11 @@
 package main.java.com.incentro.ws.services.impl;
 
+import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.models.baa.IncomingDoc;
 import main.java.com.incentro.ws.models.baa.ResultDoc;
 import main.java.com.incentro.ws.services.ServiceSoap;
 
+import javax.annotation.PostConstruct;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
@@ -18,7 +20,10 @@ import javax.jws.soap.SOAPBinding;
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class ServiceSoapImpl implements ServiceSoap {
 
-  public ServiceSoapImpl() {}
+  @PostConstruct
+  private void init() {
+    App.init();
+  }
 
   @Override
   public main.java.com.incentro.ws.models.bm.ResultDoc berichtMelding(main.java.com.incentro.ws.models.bm.IncomingDoc melding) {

@@ -1,5 +1,6 @@
 package main.java.com.incentro.ws.services.impl;
 
+import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.models.da.IncomingDoc;
 import main.java.com.incentro.ws.models.da.ResultDoc;
 import main.java.com.incentro.ws.services.DataResponse;
@@ -17,6 +18,10 @@ import javax.jws.soap.SOAPBinding;
             serviceName = "CityAlerts")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class DataResponseImpl implements DataResponse {
+
+  public DataResponseImpl() {
+    App.init();
+  }
 
   @Override
   public ResultDoc cityAlertDataResponse(IncomingDoc vraag) {
