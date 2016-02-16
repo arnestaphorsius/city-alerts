@@ -16,7 +16,7 @@ import javax.jws.soap.SOAPBinding;
 @WebService(endpointInterface = "main.java.com.incentro.ws.services.ServiceSoap",
             targetNamespace = "http://localhost:8088/ServiceSoap/",
             portName = "ServiceSoap",
-            serviceName = "CityAlerts")
+            serviceName = "BerichtMelding")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class ServiceSoapImpl implements ServiceSoap {
 

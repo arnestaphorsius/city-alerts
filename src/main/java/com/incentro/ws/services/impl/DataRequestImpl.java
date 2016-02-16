@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 @WebService(endpointInterface = "main.java.com.incentro.ws.services.DataRequest",
             targetNamespace = "http://localhost:8088/DataRequest/",
             portName = "DataRequest",
-            serviceName = "CityAlerts")
+            serviceName = "DataRequest")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class DataRequestImpl implements DataRequest {
 
