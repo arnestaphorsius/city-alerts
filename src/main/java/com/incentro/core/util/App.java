@@ -2,6 +2,7 @@ package main.java.com.incentro.core.util;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -20,10 +21,10 @@ public class App {
   public static void init() {
 
     // Load all properties
-    if (PROPERTIES != null) Props.init();
+    if (PROPERTIES == null) Props.init();
 
     // Set up connection to the database
-    if (CONNECTION_POOL != null) DBConn.init();
+    if (CONNECTION_POOL == null) DBConn.init();
   }
 
   public static String getProperty(String key) {
