@@ -1,5 +1,6 @@
 package main.java.com.incentro.ws.services.impl;
 
+import main.java.com.incentro.core.services.impl.BrandweerServiceImpl;
 import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.clients.DoorsturenAntwoordService;
 import main.java.com.incentro.ws.models.dr.IncomingDoc;
@@ -10,6 +11,8 @@ import main.java.com.incentro.ws.services.DataResponse;
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.concurrent.Executors;
 
 /**
@@ -22,6 +25,8 @@ import java.util.concurrent.Executors;
             serviceName = "DataRequest")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class DataRequestImpl implements DataRequest {
+
+  private static BrandweerServiceImpl BRANDWEER_SERVICE = new BrandweerServiceImpl();
 
   @PostConstruct
   private void init() {
@@ -47,6 +52,28 @@ public class DataRequestImpl implements DataRequest {
       }
     });
 
-    return ResultDoc.apply(vraag);
+    ResultDoc resultDoc = ResultDoc.apply(vraag);
+    Connection conn = null;
+    try {
+      conn = App.getConnection();
+
+      final String bagID = vraag.getLocatie().getBag().getBagid().toString();
+
+      String kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID);
+
+      resultDoc.setPrioriteitincident(kleurCode);
+    } catch(NullPointerException e){
+      System.out.println("WARNING: BagID was missing from the request.");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (conn != null) conn.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+
+    return resultDoc;
   }
 }
