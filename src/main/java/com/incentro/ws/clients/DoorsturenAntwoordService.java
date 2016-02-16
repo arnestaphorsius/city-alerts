@@ -56,8 +56,7 @@ public class DoorsturenAntwoordService extends Service {
 
   /**
    *
-   * @return
-   *     returns DataResponse
+   * @return DataResponse
    */
   @WebEndpoint(name = "DataResponse")
   public DataResponse getDataResponse() {
@@ -66,10 +65,9 @@ public class DoorsturenAntwoordService extends Service {
 
   /**
    *
-   * @param features
-   *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
-   * @return
-   *     returns DataResponse
+   * @param features A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.
+   *                 Supported features not in the <code>features</code> parameter will have their default values.
+   * @return DataResponse
    */
   @WebEndpoint(name = "DataResponse")
   public DataResponse getDataResponse(WebServiceFeature... features) {
