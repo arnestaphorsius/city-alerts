@@ -1,6 +1,8 @@
 package main.java.com.incentro.core.services.impl;
 
 import main.java.com.incentro.core.services.BrandweerService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,6 +14,8 @@ import java.sql.Statement;
  * @since 16-2-2016.
  */
 public class BrandweerServiceImpl implements BrandweerService {
+
+  private static Log log = LogFactory.getLog(BrandweerServiceImpl.class);
 
   @Override
   public String getIndicatoren(Connection conn, String bagID) {
@@ -27,8 +31,8 @@ public class BrandweerServiceImpl implements BrandweerService {
       String sql = "SELECT * FROM dm_berichtenservice WHERE \"bag_id\"='" + bagID + "';";
       rs = st.executeQuery(sql);
 
-      rs.next();
-      kleurcode = rs.getString("risicovol_kleurcode");
+      if (rs.next()) kleurcode = rs.getString("risicovol_kleurcode");
+      else log.info("No database entry found for BAG ID " + bagID);
 
     } catch (SQLException e) {
       e.printStackTrace();
