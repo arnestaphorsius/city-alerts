@@ -1,6 +1,8 @@
 package main.java.com.incentro.core.util;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,6 +16,8 @@ import java.util.Properties;
  * @since 3-2-2016.
  */
 public class App {
+
+  private static Log log = LogFactory.getLog(App.class);
 
   private static Properties PROPERTIES = null;
   private static BasicDataSource CONNECTION_POOL = null;
@@ -42,8 +46,7 @@ public class App {
       try {
         Class.forName(getProperty(Constants.Database.DB_DRIVER));
       } catch (ClassNotFoundException e) {
-        System.out.println("PostgreSQL JDBC Driver not found.");
-        e.printStackTrace();
+        log.error("PostgreSQL JDBC Driver not found.", e);
         return;
       }
 
@@ -62,8 +65,7 @@ public class App {
         connection.close();
 
       } catch (SQLException e) {
-        System.out.println("Unable to connect to the PostgreSQL database.");
-        e.printStackTrace();
+        log.error("Unable to connect to the PostgreSQL database.");
       }
     }
   }
@@ -76,7 +78,8 @@ public class App {
       InputStream input = null;
 
       try {
-        input = App.class.getResourceAsStream(Constants.Properties.FILE_LOCATION);
+        //input = App.class.getResourceAsStream(Constants.Properties.FILE_LOCATION);
+        input = new FileInputStream("src/main/resources/config.properties");
 
         PROPERTIES.load(input);
 
