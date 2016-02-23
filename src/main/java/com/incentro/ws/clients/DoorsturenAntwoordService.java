@@ -1,5 +1,6 @@
 package main.java.com.incentro.ws.clients;
 
+import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.services.DataResponse;
 
 import javax.xml.namespace.QName;
@@ -11,18 +12,18 @@ import java.net.URL;
  * @author Arne Staphorsius.
  * @since 12-2-2016.
  */
-@WebServiceClient(name = "DoorsturenAntwoord", targetNamespace = "http://localhost:8088/DataResponse/", wsdlLocation = "http://localhost:8088/DataResponse?wsdl")
+@WebServiceClient(name = "DoorsturenAntwoord", targetNamespace = "http://localhost:8080/city-alerts/DataResponse/", wsdlLocation = "http://localhost:8080/city-alerts/DataResponse?wsdl")
 public class DoorsturenAntwoordService extends Service {
 
   private final static URL DOORSTURENANTWOORD_WSDL_LOCATION;
   private final static WebServiceException DOORSTURENANTWOORD_EXCEPTION;
-  private final static QName DOORSTURENANTWOORD_QNAME = new QName("http://localhost:8088/DataResponse/", "DoorsturenAntwoord");
+  private final static QName DOORSTURENANTWOORD_QNAME = new QName(App.getProperty("da.location"), App.getProperty("da.service"));
 
   static {
     URL url = null;
     WebServiceException e = null;
     try {
-      url = new URL("http://localhost:8088/DataResponse?wsdl");
+      url = new URL(App.getProperty("da.wsdl"));
     } catch (MalformedURLException ex) {
       e = new WebServiceException(ex);
     }
@@ -60,7 +61,7 @@ public class DoorsturenAntwoordService extends Service {
    */
   @WebEndpoint(name = "DataResponse")
   public DataResponse getDataResponse() {
-    return super.getPort(new QName("http://localhost:8088/DataResponse/", "DataResponse"), DataResponse.class);
+    return super.getPort(new QName(App.getProperty("da.location"), App.getProperty("da.port")), DataResponse.class);
   }
 
   /**
@@ -71,7 +72,7 @@ public class DoorsturenAntwoordService extends Service {
    */
   @WebEndpoint(name = "DataResponse")
   public DataResponse getDataResponse(WebServiceFeature... features) {
-    return super.getPort(new QName("http://localhost:8088/DataResponse/", "DataResponse"), DataResponse.class, features);
+    return super.getPort(new QName(App.getProperty("da.location"), App.getProperty("da.port")), DataResponse.class, features);
   }
 
   private static URL __getWsdlLocation() {

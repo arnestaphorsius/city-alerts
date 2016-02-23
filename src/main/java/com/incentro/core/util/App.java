@@ -58,7 +58,7 @@ public class App {
         CONNECTION_POOL.setUrl(getProperty(Constants.Database.DB_URL));
         CONNECTION_POOL.setDriverClassName(getProperty(Constants.Database.DB_DRIVER));
 
-        CONNECTION_POOL.setInitialSize(1);
+        CONNECTION_POOL.setInitialSize(3);
 
         // Retrieve and close a connection to test the configuration.
         Connection connection = getConnection();
@@ -78,8 +78,8 @@ public class App {
       InputStream input = null;
 
       try {
-        //input = App.class.getResourceAsStream(Constants.Properties.FILE_LOCATION);
-        input = new FileInputStream("src/main/resources/config.properties");
+        input = App.class.getResourceAsStream(Constants.Properties.FILE_LOCATION);
+        //input = new FileInputStream("src/main/resources/config.properties");
 
         PROPERTIES.load(input);
 
