@@ -33,7 +33,7 @@ public class Brandweer {
     try {
       conn = App.getConnection();
 
-      final String bagID = vraag.getLocatie().getBag().getBagid().toString();
+      final String bagID = vraag.getLocatie().getBag().getBagid();
 
       kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID);
 
