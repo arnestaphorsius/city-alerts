@@ -3,8 +3,8 @@ package main.java.com.incentro.core.controllers;
 import main.java.com.incentro.core.services.impl.BrandweerServiceImpl;
 import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.models.dr.IncomingDoc;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class Brandweer {
 
-  private static Log log = LogFactory.getLog(Brandweer.class);
+  private static Logger log = LogManager.getLogger(Brandweer.class);
 
   private static BrandweerServiceImpl BRANDWEER_SERVICE = new BrandweerServiceImpl();
 

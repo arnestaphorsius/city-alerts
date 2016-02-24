@@ -1,8 +1,8 @@
 package main.java.com.incentro.core.services.impl;
 
 import main.java.com.incentro.core.services.BrandweerService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import java.sql.Statement;
  */
 public class BrandweerServiceImpl implements BrandweerService {
 
-  private static Log log = LogFactory.getLog(BrandweerServiceImpl.class);
+  private static Logger log = LogManager.getLogger(BrandweerServiceImpl.class);
 
   @Override
   public String getIndicatoren(Connection conn, String bagID) {

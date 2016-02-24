@@ -19,9 +19,9 @@ public class BerichtMeldingPublisher {
   }
 
   public static void main(String... args) {
-    Endpoint.publish("http://127.0.0.1:8088/ServiceSoap", new ServiceSoapImpl());
-    Endpoint.publish("http://127.0.0.1:8088/StatusResponse", new StatusResponseImpl());
-    Endpoint.publish("http://127.0.0.1:8088/DataRequest", new DataRequestImpl());
-    Endpoint.publish("http://127.0.0.1:8088/DataResponse", new DataResponseImpl());
+    Endpoint.publish("http://127.0.0.1:8080/city-alerts/ServiceSoap", new ServiceSoapImpl());
+    Endpoint.publish("http://127.0.0.1:8080/city-alerts/StatusResponse", new StatusResponseImpl());
+    Endpoint.publish("http://127.0.0.1:8080/city-alerts/DataRequest", new DataRequestImpl());
+    Endpoint.publish("http://127.0.0.1:8080/city-alerts/DataResponse", new DataResponseImpl());
   }
 }

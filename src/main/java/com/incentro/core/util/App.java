@@ -1,8 +1,8 @@
 package main.java.com.incentro.core.util;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 public class App {
 
-  private static Log log = LogFactory.getLog(App.class);
+  private static Logger log = LogManager.getLogger(App.class);
 
   private static Properties PROPERTIES = null;
   private static BasicDataSource CONNECTION_POOL = null;
