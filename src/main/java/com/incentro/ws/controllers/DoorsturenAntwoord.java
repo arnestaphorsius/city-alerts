@@ -1,8 +1,11 @@
 package main.java.com.incentro.ws.controllers;
 
+import main.java.com.incentro.core.controllers.Brandweer;
 import main.java.com.incentro.ws.clients.DoorsturenAntwoordService;
 import main.java.com.incentro.ws.models.da.IncomingDoc;
 import main.java.com.incentro.ws.services.DataResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Arne Staphorsius.
@@ -10,6 +13,8 @@ import main.java.com.incentro.ws.services.DataResponse;
  */
 public class DoorsturenAntwoord {
 
+
+  private static Logger log = LogManager.getLogger(DoorsturenAntwoord.class);
   private static DoorsturenAntwoordService DOORSTURENANTWOORD_SERVICE = new DoorsturenAntwoordService();
 
   /**
@@ -29,6 +34,18 @@ public class DoorsturenAntwoord {
         IncomingDoc in = new IncomingDoc();
 
         if (vraag != null) {
+
+          String bagID = null;
+
+          try {
+            bagID = vraag.getLocatie().getBag().getBagid();
+          } catch (NullPointerException npe) {
+            log.warn("BagID could not be retrieved from the request.");
+          }
+
+          String kleurCode = Brandweer.getKleurcode(bagID);
+          in.setIndicator(IncomingDoc.Indicator.apply(kleurCode));
+
           in.setINCIDENTID(vraag.getINCIDENTID());
           in.setDTGSTARTINCIDENT(vraag.getDTGSTARTINCIDENT());
           in.setPRIORITEITINCIDENT(vraag.getPRIORITEITINCIDENT());

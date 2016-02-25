@@ -37,6 +37,12 @@ public class ResultDoc {
     result.setIncidentid(incomingDoc.getINCIDENTID());
     result.setDtgstartincident(incomingDoc.getDTGSTARTINCIDENT());
 
+    if (incomingDoc.getIndicator() != null) {
+      result.setIndicator(incomingDoc.getIndicator().getIndicator());
+      result.setResultaatcode(incomingDoc.getIndicator().getLabel());
+      result.setBerichtstatus(incomingDoc.getIndicator().getAanvullendeinfo());
+    }
+
     return result;
   }
 

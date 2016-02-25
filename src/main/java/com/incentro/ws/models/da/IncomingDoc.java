@@ -336,6 +336,14 @@ public class IncomingDoc {
     @XmlElement(name = "AanvullendeInformatie", required = true)
     protected String aanvullendeinfo;
 
+    public static Indicator apply(String kleurcode) {
+      Indicator result = new Indicator();
+      result.setIndicator(kleurcode != null ? kleurcode : "wit");
+      result.setLabel(kleurcode != null ? kleurcode : "wit");
+
+      return result;
+    }
+
     public String getIndicator() {
       return indicator;
     }
