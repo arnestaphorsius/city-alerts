@@ -16,7 +16,7 @@ import javax.jws.soap.SOAPBinding;
  * @since 12-2-2016.
  */
 @WebService(endpointInterface = "main.java.com.incentro.ws.services.DataResponse",
-            targetNamespace = "http://localhost:8080/city-alerts/DataResponse/",
+            targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/DataResponse/",
             portName = "DataResponse",
             serviceName = "DoorsturenAntwoord")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
