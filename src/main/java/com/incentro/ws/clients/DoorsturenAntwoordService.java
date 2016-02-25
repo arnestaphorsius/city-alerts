@@ -12,7 +12,7 @@ import java.net.URL;
  * @author Arne Staphorsius.
  * @since 12-2-2016.
  */
-@WebServiceClient(name = "DoorsturenAntwoord", targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/DataResponse/", wsdlLocation = "http://veiligheidintelligence.nl:5080/city-alerts/DataResponse?wsdl")
+@WebServiceClient(name = "DoorsturenAntwoord", targetNamespace = "http://172.21.8.11:8080/city-alerts/DataResponse/", wsdlLocation = "hhttp://172.21.8.11:8080/city-alerts/DataResponse?wsdl")
 public class DoorsturenAntwoordService extends Service {
 
   private final static URL DOORSTURENANTWOORD_WSDL_LOCATION;
