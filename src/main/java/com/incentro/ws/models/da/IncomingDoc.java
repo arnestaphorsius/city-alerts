@@ -146,6 +146,33 @@ public class IncomingDoc {
     @XmlElement(name = "BAG", required = true)
     protected Locatie.BAG bag;
 
+    public static Locatie apply(main.java.com.incentro.ws.models.dr.IncomingDoc.Locatie input) {
+      Locatie output = new Locatie();
+
+      if (input != null) {
+        if (input.getAdres() != null) {
+          output.adres = new Adres();
+          output.adres.setHuisnrtoev(input.getAdres().getHuisnrtoev());
+          output.adres.setHuispaalnr(input.getAdres().getHuispaalnr());
+          output.adres.setObjecthuisnummertoevoeging(input.getAdres().getObjecthuisnummertoevoeging());
+          output.adres.setPostcode(input.getAdres().getPostcode());
+          output.adres.setStraatnaamnen(input.getAdres().getStraatnaamnen());
+        }
+        if (input.getGeolocatie() != null) {
+          output.geolocatie = new Geolocatie();
+          output.geolocatie.setTxcoord(input.getGeolocatie().getTxcoord());
+          output.geolocatie.setTycoord(input.getGeolocatie().getTycoord());
+        }
+        if (input.getBag() != null) {
+          output.bag = new BAG();
+          output.bag.setBagid(input.getBag().getBagid());
+          output.bag.setBagversie(input.getBag().getBagversie());
+        }
+      }
+
+      return output;
+    }
+
     public Adres getAdres() {
       return adres;
     }
@@ -269,15 +296,15 @@ public class IncomingDoc {
     public static class BAG {
 
       @XmlElement(name = "BAG_ID", required = true)
-      protected BigDecimal bagid;
+      protected String bagid;
       @XmlElement(name = "BAG_versie", required = true)
       protected BigDecimal bagversie;
 
-      public BigDecimal getBagid() {
+      public String getBagid() {
         return bagid;
       }
 
-      public void setBagid(BigDecimal bagid) {
+      public void setBagid(String bagid) {
         this.bagid = bagid;
       }
 

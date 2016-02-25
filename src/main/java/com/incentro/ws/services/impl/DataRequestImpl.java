@@ -1,6 +1,5 @@
 package main.java.com.incentro.ws.services.impl;
 
-import main.java.com.incentro.core.controllers.Brandweer;
 import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.core.util.Concurrency;
 import main.java.com.incentro.ws.controllers.DoorsturenAntwoord;
@@ -35,11 +34,6 @@ public class DataRequestImpl implements DataRequest {
         DoorsturenAntwoord.sendFromDataRequest(vraag)
     );
 
-    ResultDoc resultDoc = ResultDoc.apply(vraag);
-
-    String kleurCode = Brandweer.getKleurcode(vraag);
-    resultDoc.setPrioriteitincident(kleurCode != null ? kleurCode : "wit");
-
-    return resultDoc;
+    return ResultDoc.apply(vraag);
   }
 }

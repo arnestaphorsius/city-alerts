@@ -42,6 +42,7 @@ public class ResultDoc {
         result.setPrioriteitincident(incomingDoc.getPRIORITEITINCIDENT());
         result.setDtgstartincident(incomingDoc.getDTGSTARTINCIDENT());
         result.setLocatie(incomingDoc.getLocatie());
+        result.setIndicator(Indicator.apply(incomingDoc.getIndicator()));
 
         return result;
     }
@@ -144,6 +145,18 @@ public class ResultDoc {
         protected String gevraagdeindicator;
         @XmlElement(name = "Status", required = true)
         protected BigInteger status;
+
+        public static Indicator apply(main.java.com.incentro.ws.models.dr.IncomingDoc.Indicator indicator) {
+            Indicator ind = new Indicator();
+
+            if (indicator != null) {
+                ind.setGevraagdeindicator(indicator.getGevraagdeindicator());
+            }
+
+            ind.setStatus(BigInteger.valueOf(1));
+
+            return ind;
+        }
 
         public String getGevraagdeindicator() {
             return gevraagdeindicator;

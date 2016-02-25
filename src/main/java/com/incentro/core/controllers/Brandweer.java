@@ -2,7 +2,6 @@ package main.java.com.incentro.core.controllers;
 
 import main.java.com.incentro.core.services.impl.BrandweerServiceImpl;
 import main.java.com.incentro.core.util.App;
-import main.java.com.incentro.ws.models.dr.IncomingDoc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,10 +21,10 @@ public class Brandweer {
   /**
    * Retrieves the color code for an object based on BAG ID.
    *
-   * @param vraag {@link IncomingDoc}
+   * @param bagID the BAG ID
    * @return the color code
    */
-  public static String getKleurcode(IncomingDoc vraag) {
+  public static String getKleurcode(String bagID) {
 
     Connection conn = null;
     String kleurCode = null;
@@ -33,12 +32,8 @@ public class Brandweer {
     try {
       conn = App.getConnection();
 
-      final String bagID = vraag.getLocatie().getBag().getBagid();
-
       kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID);
 
-    } catch(NullPointerException e){
-      log.warn("BagID was missing from the request.");
     } catch (SQLException e) {
       log.error("Unable to connect to the PostgreSQL database.", e);
     } finally {

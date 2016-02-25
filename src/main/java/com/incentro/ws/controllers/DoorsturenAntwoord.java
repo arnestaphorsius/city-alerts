@@ -32,6 +32,7 @@ public class DoorsturenAntwoord {
           in.setINCIDENTID(vraag.getINCIDENTID());
           in.setDTGSTARTINCIDENT(vraag.getDTGSTARTINCIDENT());
           in.setPRIORITEITINCIDENT(vraag.getPRIORITEITINCIDENT());
+          in.setLocatie(IncomingDoc.Locatie.apply(vraag.getLocatie()));
         }
 
         port.cityAlertDataResponse(in);

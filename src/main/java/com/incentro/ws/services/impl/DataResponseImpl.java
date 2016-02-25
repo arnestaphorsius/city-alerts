@@ -1,9 +1,12 @@
 package main.java.com.incentro.ws.services.impl;
 
+import main.java.com.incentro.core.controllers.Brandweer;
 import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.models.da.IncomingDoc;
 import main.java.com.incentro.ws.models.da.ResultDoc;
 import main.java.com.incentro.ws.services.DataResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -19,6 +22,8 @@ import javax.jws.soap.SOAPBinding;
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class DataResponseImpl implements DataResponse {
 
+  private static Logger log = LogManager.getLogger(DataResponseImpl.class);
+
   public DataResponseImpl() {
     App.init();
   }
@@ -26,6 +31,19 @@ public class DataResponseImpl implements DataResponse {
   @Override
   public ResultDoc cityAlertDataResponse(IncomingDoc vraag) {
 
-    return ResultDoc.apply(vraag);
+    ResultDoc resultDoc = ResultDoc.apply(vraag);
+
+    String bagID = null;
+
+    try {
+      bagID = vraag.getLocatie().getBag().getBagid();
+    } catch (NullPointerException npe) {
+      log.warn("BagID could not be retrieved from the request.");
+    }
+
+    String kleurCode = Brandweer.getKleurcode(bagID);
+    resultDoc.setResultaatcode(kleurCode != null ? kleurCode : "wit");
+
+    return resultDoc;
   }
 }
