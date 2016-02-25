@@ -1,6 +1,8 @@
 package main.java.com.incentro.core.services.impl;
 
 import main.java.com.incentro.core.services.BrandweerService;
+import main.java.com.incentro.core.util.App;
+import main.java.com.incentro.core.util.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +30,9 @@ public class BrandweerServiceImpl implements BrandweerService {
     try {
       st = conn.createStatement();
 
-      String sql = "SELECT * FROM dm_berichtenservice WHERE \"bag_id\"='" + bagID + "';";
+      String table = App.getProperty(Constants.Database.DB_TABLE);
+
+      String sql = "SELECT * FROM " + table + " WHERE \"bag_id\"='" + bagID + "';";
       rs = st.executeQuery(sql);
 
       if (rs.next()) kleurcode = rs.getString("risicovol_kleurcode");
