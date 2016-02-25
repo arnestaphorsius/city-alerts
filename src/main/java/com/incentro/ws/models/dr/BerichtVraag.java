@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BerichtVraag", namespace = "http://localhost:8088/DataRequest/", propOrder = {
+@XmlType(name = "BerichtVraag", namespace = "http://veiligheidintelligence.nl:5080/city-alerts/DataRequest/", propOrder = {
     "vraag"
 })
 @XmlRootElement(name = "BerichtVraag")
