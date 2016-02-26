@@ -3,7 +3,7 @@
     <Properties>
         <Property name="LOG_DIR">${sys:catalina.base}/logs/city-alerts</Property>
         <Property name="ARCHIVE">${LOG_DIR}/archive</Property>
-        <Property name="PATTERN">%level %d{yyyy-MM-dd-hh-mm}- %c{1}: %m%n</Property>
+        <Property name="PATTERN">%-5p %d{yyyy-MM-dd hh:mm:ss}- %c{1}: %m%n</Property>
     </Properties>
     <Appenders>
         <Console name="STDOUT" target="SYSTEM_OUT">
