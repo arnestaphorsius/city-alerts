@@ -27,6 +27,11 @@ public class BrandweerServiceImpl implements BrandweerService {
 
     String kleurcode = null;
 
+    if (bagID == null) {
+      log.warn("No BAG ID was supplied in the request.");
+      return null;
+    }
+
     try {
       st = conn.createStatement();
 
