@@ -1,6 +1,5 @@
 package main.java.com.incentro.ws.clients;
 
-import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.services.DataResponse;
 
 import javax.xml.namespace.QName;
@@ -17,13 +16,13 @@ public class DoorsturenAntwoordService extends Service {
 
   private final static URL DOORSTURENANTWOORD_WSDL_LOCATION;
   private final static WebServiceException DOORSTURENANTWOORD_EXCEPTION;
-  private final static QName DOORSTURENANTWOORD_QNAME = new QName(App.getProperty("da.location"), App.getProperty("da.service"));
+  private final static QName DOORSTURENANTWOORD_QNAME = new QName("http://172.21.8.11:8080/city-alerts/DataResponse/", "DoorsturenAntwoord");
 
   static {
     URL url = null;
     WebServiceException e = null;
     try {
-      url = new URL(App.getProperty("da.wsdl"));
+      url = new URL("http://172.21.8.11:8080/city-alerts/DataResponse?wsdl");
     } catch (MalformedURLException ex) {
       e = new WebServiceException(ex);
     }
@@ -61,7 +60,7 @@ public class DoorsturenAntwoordService extends Service {
    */
   @WebEndpoint(name = "DataResponse")
   public DataResponse getDataResponse() {
-    return super.getPort(new QName(App.getProperty("da.location"), App.getProperty("da.port")), DataResponse.class);
+    return super.getPort(new QName("http://172.21.8.11:8080/city-alerts/DataResponse/", "DataResponse"), DataResponse.class);
   }
 
   /**
@@ -72,7 +71,7 @@ public class DoorsturenAntwoordService extends Service {
    */
   @WebEndpoint(name = "DataResponse")
   public DataResponse getDataResponse(WebServiceFeature... features) {
-    return super.getPort(new QName(App.getProperty("da.location"), App.getProperty("da.port")), DataResponse.class, features);
+    return super.getPort(new QName("http://172.21.8.11:8080/city-alerts/DataResponse/", "DataResponse"), DataResponse.class, features);
   }
 
   private static URL __getWsdlLocation() {
