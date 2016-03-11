@@ -11,18 +11,18 @@ import java.net.URL;
  * @author Arne Staphorsius.
  * @since 12-2-2016.
  */
-@WebServiceClient(name = "DoorsturenStatus", targetNamespace = "http://localhost:8088/StatusResponse/", wsdlLocation = "http://localhost:8088/StatusResponse?wsdl")
+@WebServiceClient(name = "DoorsturenStatus", targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/", wsdlLocation = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse?wsdl")
 public class DoorsturenStatusService extends Service {
 
   private final static URL DOORSTURENSTATUS_WSDL_LOCATION;
   private final static WebServiceException DOORSTURENSTATUS_EXCEPTION;
-  private final static QName DOORSTURENSTATUS_QNAME = new QName("http://localhost:8088/StatusResponse/", "DoorsturenStatus");
+  private final static QName DOORSTURENSTATUS_QNAME = new QName("http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/", "DoorsturenStatus");
 
   static {
     URL url = null;
     WebServiceException e = null;
     try {
-      url = new URL("http://localhost:8088/StatusResponse?wsdl");
+      url = new URL("http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse?wsdl");
     } catch (MalformedURLException ex) {
       e = new WebServiceException(ex);
     }
@@ -61,7 +61,7 @@ public class DoorsturenStatusService extends Service {
    */
   @WebEndpoint(name = "StatusResponse")
   public StatusResponse getStatusResponse() {
-    return super.getPort(new QName("http://localhost:8088/StatusResponse/", "StatusResponse"), StatusResponse.class);
+    return super.getPort(new QName("http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/", "StatusResponse"), StatusResponse.class);
   }
 
   /**
@@ -73,7 +73,7 @@ public class DoorsturenStatusService extends Service {
    */
   @WebEndpoint(name = "StatusResponse")
   public StatusResponse getStatusResponse(WebServiceFeature... features) {
-    return super.getPort(new QName("http://localhost:8088/StatusResponse/", "StatusResponse"), StatusResponse.class, features);
+    return super.getPort(new QName("http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/", "StatusResponse"), StatusResponse.class, features);
   }
 
   private static URL __getWsdlLocation() {

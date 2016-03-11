@@ -1,2 +1,2 @@
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://localhost:8088/StatusResponse/", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package main.java.com.incentro.ws.models.ds;

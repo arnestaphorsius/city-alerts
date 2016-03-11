@@ -15,7 +15,7 @@ import javax.xml.ws.ResponseWrapper;
  * @author Arne Staphorsius.
  * @since 12-2-2016.
  */
-@WebService(name = "StatusResponse", targetNamespace = "http://localhost:8088/StatusResponse/")
+@WebService(name = "StatusResponse", targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public interface StatusResponse {
 
@@ -23,12 +23,12 @@ public interface StatusResponse {
    * @param vraag models.ds.IncomingDoc
    * @return models.ds.ResultDoc
    */
-  @WebMethod(action = "http://localhost:8088/StatusResponse/CityAlertStatusResponse", operationName = "CityAlertStatusResponse")
-  @WebResult(name = "Antwoord", targetNamespace = "http://localhost:8088/StatusResponse/")
-  @RequestWrapper(localName = "BerichtVraag", targetNamespace = "http://localhost:8088/StatusResponse/", className = "models.ds.BerichtVraag", partName = "parameter")
-  @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "http://localhost:8088/StatusResponse/", className = "models.ds.BerichtAntwoord", partName = "parameter")
+  @WebMethod(action = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/CityAlertStatusResponse", operationName = "CityAlertStatusResponse")
+  @WebResult(name = "Antwoord", targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/")
+  @RequestWrapper(localName = "BerichtVraag", targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/", className = "models.ds.BerichtVraag", partName = "parameter")
+  @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/", className = "models.ds.BerichtAntwoord", partName = "parameter")
   ResultDoc cityAlertStatusResponse(
-      @WebParam(name = "Vraag", targetNamespace = "http://localhost:8088/StatusResponse/")
+      @WebParam(name = "Vraag", targetNamespace = "http://veiligheidintelligence.nl:5080/city-alerts/StatusResponse/")
       IncomingDoc vraag);
 
 }
