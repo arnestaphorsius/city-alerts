@@ -31,7 +31,7 @@ public class Brandweer {
     String kleurCode = null;
 
     try {
-      conn = App.getConnection();
+      conn = App.getDataRequestConnection();
 
       kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID);
 
@@ -58,7 +58,7 @@ public class Brandweer {
     Connection conn = null;
 
     try {
-      conn = App.getConnection();
+      conn = App.getStatusResponseConnection();
 
       BRANDWEER_SERVICE.insertStatusResponse(conn, incomingDoc);
 
