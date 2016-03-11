@@ -272,15 +272,15 @@ public class IncomingDoc {
     public static class BAG {
 
       @XmlElement(name = "BAG_ID", required = true)
-      protected BigDecimal bagid;
+      protected String bagid;
       @XmlElement(name = "BAG_versie", required = true)
       protected BigDecimal bagversie;
 
-      public BigDecimal getBagid() {
+      public String getBagid() {
         return bagid;
       }
 
-      public void setBagid(BigDecimal bagid) {
+      public void setBagid(String bagid) {
         this.bagid = bagid;
       }
 

@@ -71,11 +71,17 @@ public class BrandweerServiceImpl implements BrandweerService {
       try {
         String table = App.getProperty(Constants.StatusResponse.DB_TABLE);
 
-        String sql = "INSERT INTO " + table + "(id, bagid) VALUES(?, ?) ";
+        String sql = "INSERT INTO " + table + "(incident_id,incident_prioriteit,incident_start_dtg,bag_id" +
+            ",gevraagde_indicator,status) VALUES(?, ?, ?, ?, ?, ?) ";
 
         st = conn.prepareStatement(sql);
+
         st.setString(1, incomingDoc.getINCIDENTID());
-        st.setBigDecimal(2, incomingDoc.getLocatie().getBag().getBagid());
+        st.setString(2, incomingDoc.getPRIORITEITINCIDENT());
+        st.setString(3, incomingDoc.getDTGSTARTINCIDENT().toString());
+        st.setString(4, incomingDoc.getLocatie().getBag().getBagid());
+        st.setString(5, incomingDoc.getIndicator().getGevraagdeindicator());
+        st.setString(6, incomingDoc.getIndicator().getStatus());
 
         st.executeUpdate();
 
