@@ -8,6 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author Arne Staphorsius.
@@ -16,6 +19,8 @@ import java.sql.*;
 public class BrandweerServiceImpl implements BrandweerService {
 
   private static Logger log = LogManager.getLogger(BrandweerServiceImpl.class);
+
+  private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
   @Override
   public String getIndicatoren(Connection conn, String bagID) {
@@ -34,12 +39,12 @@ public class BrandweerServiceImpl implements BrandweerService {
 
       String table = App.getProperty(Constants.DataRequest.DB_TABLE);
 
-      String sql = "SELECT * FROM " + table + " WHERE \"bag_id\"=?;";
+      String sql = "SELECT * FROM " + table + " WHERE bag_id = ?";
 
       st = conn.prepareStatement(sql);
       st.setString(1, bagID);
 
-      rs = st.executeQuery(sql);
+      rs = st.executeQuery();
 
       if (rs.next()) kleurcode = rs.getString("risicovol_kleurcode");
       else log.info("No database entry found for BAG ID " + bagID);
@@ -71,17 +76,20 @@ public class BrandweerServiceImpl implements BrandweerService {
       try {
         String table = App.getProperty(Constants.StatusResponse.DB_TABLE);
 
-        String sql = "INSERT INTO " + table + "(incident_id,incident_prioriteit,incident_start_dtg,bag_id" +
-            ",gevraagde_indicator,status) VALUES(?, ?, ?, ?, ?, ?) ";
+        String currentDate = dateFormat.format(new Date());
+
+        String sql = "INSERT INTO " + table + "(log_time,incident_id,incident_prioriteit,incident_start_dtg,bag_id" +
+            ",gevraagde_indicator,status) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         st = conn.prepareStatement(sql);
 
-        st.setString(1, incomingDoc.getINCIDENTID());
-        st.setString(2, incomingDoc.getPRIORITEITINCIDENT());
-        st.setString(3, incomingDoc.getDTGSTARTINCIDENT().toString());
-        st.setString(4, incomingDoc.getLocatie().getBag().getBagid());
-        st.setString(5, incomingDoc.getIndicator().getGevraagdeindicator());
-        st.setString(6, incomingDoc.getIndicator().getStatus());
+        st.setString(1, currentDate);
+        st.setString(2, incomingDoc.getINCIDENTID());
+        st.setString(3, incomingDoc.getPRIORITEITINCIDENT());
+        st.setString(4, incomingDoc.getDTGSTARTINCIDENT().toString());
+        st.setString(5, incomingDoc.getLocatie().getBag().getBagid());
+        st.setString(6, incomingDoc.getIndicator().getGevraagdeindicator());
+        st.setString(7, incomingDoc.getIndicator().getStatus());
 
         st.executeUpdate();
 
