@@ -1,5 +1,6 @@
 package main.java.com.incentro.ws.services.impl;
 
+import main.java.com.incentro.core.controllers.Brandweer;
 import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.ws.models.ds.IncomingDoc;
 import main.java.com.incentro.ws.models.ds.ResultDoc;
@@ -27,6 +28,8 @@ public class StatusResponseImpl implements StatusResponse {
 
   @Override
   public ResultDoc cityAlertStatusResponse(IncomingDoc vraag) {
+
+    Brandweer.insertStatusResponse(vraag);
 
     return ResultDoc.apply(vraag);
   }

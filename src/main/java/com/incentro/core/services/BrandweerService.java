@@ -1,5 +1,7 @@
 package main.java.com.incentro.core.services;
 
+import main.java.com.incentro.ws.models.ds.IncomingDoc;
+
 import java.sql.Connection;
 
 /**
@@ -9,4 +11,6 @@ import java.sql.Connection;
 public interface BrandweerService {
 
   String getIndicatoren(Connection conn, String bagID);
+
+  void insertStatusResponse(Connection conn, IncomingDoc inc);
 }

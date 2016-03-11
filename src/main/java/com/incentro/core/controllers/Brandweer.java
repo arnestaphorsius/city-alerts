@@ -2,6 +2,7 @@ package main.java.com.incentro.core.controllers;
 
 import main.java.com.incentro.core.services.impl.BrandweerServiceImpl;
 import main.java.com.incentro.core.util.App;
+import main.java.com.incentro.ws.models.ds.IncomingDoc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,7 +36,7 @@ public class Brandweer {
       kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID);
 
     } catch (SQLException e) {
-      log.error("Unable to connect to the PostgreSQL database.", e);
+      log.error("Unable to get a connection to the PostgreSQL database.", e);
     } finally {
       try {
         if (conn != null) conn.close();
@@ -45,5 +46,30 @@ public class Brandweer {
     }
 
     return kleurCode;
+  }
+
+  /**
+   * Inserts the status response into the logging database.
+   *
+   * @param incomingDoc the {@link IncomingDoc} from the request.
+   */
+  public static void insertStatusResponse(IncomingDoc incomingDoc) {
+
+    Connection conn = null;
+
+    try {
+      conn = App.getConnection();
+
+      BRANDWEER_SERVICE.insertStatusResponse(conn, incomingDoc);
+
+    } catch (SQLException e) {
+      log.error("Unable to get a connection to the PostgreSQL database.", e);
+    } finally {
+      try {
+        if (conn != null) conn.close();
+      } catch (SQLException e) {
+        log.warn("An error occurred while trying to close database connection.");
+      }
+    }
   }
 }
