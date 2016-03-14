@@ -86,10 +86,15 @@ public class BrandweerServiceImpl implements BrandweerService {
         st.setString(1, currentDate);
         st.setString(2, incomingDoc.getINCIDENTID());
         st.setString(3, incomingDoc.getPRIORITEITINCIDENT());
-        st.setString(4, incomingDoc.getDTGSTARTINCIDENT().toString());
-        st.setString(5, incomingDoc.getLocatie().getBag().getBagid());
-        st.setString(6, incomingDoc.getIndicator().getGevraagdeindicator());
-        st.setString(7, incomingDoc.getIndicator().getStatus());
+        st.setString(4, incomingDoc.getDTGSTARTINCIDENT() != null ?
+              incomingDoc.getDTGSTARTINCIDENT().toString(): null);
+
+        if (incomingDoc.getLocatie() != null && incomingDoc.getLocatie().getBag() != null) {
+          st.setString(5, incomingDoc.getLocatie().getBag().getBagid()); } else st.setString(5, null);
+
+        IncomingDoc.Indicator indicator = incomingDoc.getIndicator();
+        st.setString(6, indicator != null ? incomingDoc.getIndicator().getGevraagdeindicator() : null);
+        st.setString(7, indicator != null ? incomingDoc.getIndicator().getStatus() : null);
 
         st.executeUpdate();
 
