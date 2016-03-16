@@ -23,6 +23,10 @@
         <RollingFile name="accessFileWriter"
                      fileName="${LOG_DIR}/access.log"
                      filePattern="${ARCHIVE}/access.log.%d{yyyy-MM-dd}.gz">
+
+            <ThresholdFilter level="INFO"  onMatch="DENY"   onMismatch="NEUTRAL"/>
+            <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+
             <PatternLayout pattern="${PATTERN}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="10 MB" />
@@ -31,11 +35,9 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="INFO">
-            <AppenderRef ref="errorFileWriter"/>
-        </Root>
         <Root level="TRACE">
-            <AppenderRef ref="accessFileWriter"/>
+            <AppenderRef ref="errorFileWriter" level="INFO"/>
+            <AppenderRef ref="accessFileWriter" level="TRACE"/>
         </Root>
     </Loggers>
 </Configuration>
