@@ -1,9 +1,9 @@
 package main.java.com.incentro.ws.controllers;
 
 import main.java.com.incentro.core.controllers.Brandweer;
-import main.java.com.incentro.ws.clients.DoorsturenAntwoordService;
-import main.java.com.incentro.ws.models.da.IncomingDoc;
-import main.java.com.incentro.ws.services.DataResponse;
+import main.java.com.incentro.ws.clients.BerichtendienstAntwoordService;
+import main.java.com.incentro.ws.models.bd.IncomingDoc;
+import main.java.com.incentro.ws.services.ServiceSoap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,9 +13,8 @@ import org.apache.logging.log4j.Logger;
  */
 public class DoorsturenAntwoord {
 
-
   private static Logger log = LogManager.getLogger(DoorsturenAntwoord.class);
-  private static DoorsturenAntwoordService DOORSTURENANTWOORD_SERVICE = new DoorsturenAntwoordService();
+  private static BerichtendienstAntwoordService BERICHTENDIENST_SERVICE = new BerichtendienstAntwoordService();
 
   /**
    * Create a Runnable that will send a CityAlertDataResponse.
@@ -29,7 +28,7 @@ public class DoorsturenAntwoord {
 
       @Override
       public void run() {
-        DataResponse port = DOORSTURENANTWOORD_SERVICE.getDataResponse();
+        ServiceSoap port = BERICHTENDIENST_SERVICE.getServiceSoap();
 
         IncomingDoc in = new IncomingDoc();
 
@@ -46,13 +45,13 @@ public class DoorsturenAntwoord {
           String kleurCode = Brandweer.getKleurcode(bagID);
           in.setIndicator(IncomingDoc.Indicator.apply(kleurCode));
 
-          in.setINCIDENTID(vraag.getINCIDENTID());
-          in.setDTGSTARTINCIDENT(vraag.getDTGSTARTINCIDENT());
-          in.setPRIORITEITINCIDENT(vraag.getPRIORITEITINCIDENT());
+          in.setIncidentid(vraag.getINCIDENTID());
+          in.setDtgstartincident(vraag.getDTGSTARTINCIDENT());
+          in.setPrioriteitincident(vraag.getPRIORITEITINCIDENT());
           in.setLocatie(IncomingDoc.Locatie.apply(vraag.getLocatie()));
         }
 
-        port.cityAlertDataResponse(in);
+        port.berichtenDienstAntwoord(in);
       }
     };
   }
