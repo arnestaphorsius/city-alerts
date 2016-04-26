@@ -1,6 +1,6 @@
 package main.java.com.incentro.core.services;
 
-import main.java.com.incentro.ws.models.ds.IncomingDoc;
+import main.java.com.incentro.ws.models.dr.IncomingDoc;
 
 import java.sql.Connection;
 

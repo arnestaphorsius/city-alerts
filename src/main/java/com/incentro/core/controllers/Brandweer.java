@@ -2,7 +2,7 @@ package main.java.com.incentro.core.controllers;
 
 import main.java.com.incentro.core.services.impl.BrandweerServiceImpl;
 import main.java.com.incentro.core.util.App;
-import main.java.com.incentro.ws.models.ds.IncomingDoc;
+import main.java.com.incentro.ws.models.dr.IncomingDoc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

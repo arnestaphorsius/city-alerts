@@ -3,7 +3,7 @@ package main.java.com.incentro.core.services.impl;
 import main.java.com.incentro.core.services.BrandweerService;
 import main.java.com.incentro.core.util.App;
 import main.java.com.incentro.core.util.Constants;
-import main.java.com.incentro.ws.models.ds.IncomingDoc;
+import main.java.com.incentro.ws.models.dr.IncomingDoc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -94,7 +94,7 @@ public class BrandweerServiceImpl implements BrandweerService {
 
         IncomingDoc.Indicator indicator = incomingDoc.getIndicator();
         st.setString(6, indicator != null ? incomingDoc.getIndicator().getGevraagdeindicator() : null);
-        st.setString(7, indicator != null ? incomingDoc.getIndicator().getStatus() : null);
+        st.setString(7, indicator != null ? incomingDoc.getIndicator().getMaximaaltoegestaanwaarschuwingsniveau().toString() : null);
 
         st.executeUpdate();
 
