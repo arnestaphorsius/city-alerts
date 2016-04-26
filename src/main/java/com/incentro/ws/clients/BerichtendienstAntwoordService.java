@@ -3,10 +3,7 @@ package main.java.com.incentro.ws.clients;
 import main.java.com.incentro.ws.services.ServiceSoap;
 
 import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebEndpoint;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.WebServiceFeature;
+import javax.xml.ws.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -14,18 +11,18 @@ import java.net.URL;
  * @author Arne Staphorsius.
  * @since 29-3-2016.
  */
+@WebServiceClient(name = "DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord", targetNamespace = "TNS", wsdlLocation = "https://145.128.20.36:8443/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord?wsdl")
 public class BerichtendienstAntwoordService extends Service {
 
   private final static URL BERICHTENDIENST_WSDL_LOCATION;
   private final static WebServiceException BERICHTENDIENST_EXCEPTION;
-  private final static QName BERICHTENDIENST_QNAME = new QName("https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/",
-      "DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord");
+  private final static QName BERICHTENDIENST_QNAME = new QName("TNS", "DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord");
 
   static {
     URL url = null;
     WebServiceException e = null;
     try {
-      url = new URL("https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord?wsdl");
+      url = new URL("https://145.128.20.36:8443/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord?wsdl");
     } catch (MalformedURLException ex) {
       e = new WebServiceException(ex);
     }
@@ -63,7 +60,7 @@ public class BerichtendienstAntwoordService extends Service {
    */
   @WebEndpoint(name = "ServiceSoap")
   public ServiceSoap getServiceSoap() {
-    return super.getPort(new QName("https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/", "ServiceSoap"), ServiceSoap.class);
+    return super.getPort(new QName("TNS", "ServiceSoap"), ServiceSoap.class);
   }
 
   /**
@@ -74,7 +71,7 @@ public class BerichtendienstAntwoordService extends Service {
    */
   @WebEndpoint(name = "ServiceSoap")
   public ServiceSoap getServiceSoap(WebServiceFeature... features) {
-    return super.getPort(new QName("https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/", "ServiceSoap"), ServiceSoap.class, features);
+    return super.getPort(new QName("TNS", "ServiceSoap"), ServiceSoap.class, features);
   }
 
   private static URL __getWsdlLocation() {

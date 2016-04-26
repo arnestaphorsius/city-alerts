@@ -15,7 +15,7 @@ import javax.xml.ws.ResponseWrapper;
  * @author Arne Staphorsius.
  * @since 29-3-2016.
  */
-@WebService(name = "ServiceSoap", targetNamespace = "https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/")
+@WebService(name = "ServiceSoap", targetNamespace = "TNS")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public interface ServiceSoap {
 
@@ -23,12 +23,12 @@ public interface ServiceSoap {
    * @param vraag models.da.IncomingDoc
    * @return models.da.ResultDoc
    */
-  @WebMethod(action = "https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/CityAlertDataResponse", operationName = "CityAlertDataResponse")
-  @WebResult(name = "Antwoord", targetNamespace = "https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/")
-  @RequestWrapper(localName = "BerichtVraag", targetNamespace = "https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/", className = "models.bd.BerichtVraag", partName = "parameter")
-  @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/", className = "models.bd.BerichtAntwoord", partName = "parameter")
-  ResultDoc berichtenDienstAntwoord(
-      @WebParam(name = "Vraag", targetNamespace = "https://145.128.20.36/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord/")
+  @WebMethod(operationName = "CityAlertDataResponse")
+  @WebResult(name = "Antwoord", targetNamespace = "TNS")
+  @RequestWrapper(localName = "BerichtVraag", targetNamespace = "TNS", className = "models.bd.BerichtVraag", partName = "parameter")
+  @ResponseWrapper(localName = "BerichtAntwoord", targetNamespace = "TNS", className = "models.bd.BerichtAntwoord", partName = "parameter")
+  ResultDoc cityAlertDataResponse(
+      @WebParam(name = "Vraag", targetNamespace = "TNS")
       IncomingDoc vraag);
 
 }
