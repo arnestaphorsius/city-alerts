@@ -43,7 +43,7 @@ public class StatusResponseImpl implements StatusResponse {
 
     log.trace("Received StatusResponse request from " + remoteAddress);
 
-    Brandweer.insertStatusResponse(vraag);
+    //Brandweer.insertStatusResponse(vraag);
 
     return ResultDoc.apply(vraag);
   }

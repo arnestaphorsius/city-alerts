@@ -51,7 +51,11 @@ public class DoorsturenAntwoord {
           in.setLocatie(IncomingDoc.Locatie.apply(vraag.getLocatie()));
         }
 
-        port.berichtenDienstAntwoord(in);
+        Brandweer.insertStatusResponse(vraag);
+
+        log.trace("Sending CityAlert DataResponse.");
+
+        port.cityAlertDataResponse(in);
       }
     };
   }
