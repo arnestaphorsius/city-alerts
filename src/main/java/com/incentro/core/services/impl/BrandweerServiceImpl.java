@@ -7,6 +7,7 @@ import main.java.com.incentro.ws.models.dr.IncomingDoc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,12 +24,15 @@ public class BrandweerServiceImpl implements BrandweerService {
   private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
   @Override
-  public String getIndicatoren(Connection conn, String bagID) {
+  public main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator getIndicatoren(Connection conn,
+                                                                                  String bagID,
+                                                                                  IncomingDoc.Indicator indicator) {
 
     PreparedStatement st = null;
     ResultSet rs = null;
 
-    String kleurcode = null;
+    main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator kleurIndicator =
+        new main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator();
 
     if (bagID == null) {
       log.warn("No BAG ID was supplied in the request.");
@@ -46,7 +50,24 @@ public class BrandweerServiceImpl implements BrandweerService {
 
       rs = st.executeQuery();
 
-      if (rs.next()) kleurcode = rs.getString("risicovol_kleurcode");
+      if (rs.next()) {
+
+        final String risicovol_kleurcode = rs.getString("risicovol_kleurcode");
+        final int maxNiveau = indicator != null && indicator.getMaximaaltoegestaanwaarschuwingsniveau() != null ?
+            indicator.getMaximaaltoegestaanwaarschuwingsniveau().intValue() : 0;
+
+        String kleurcode = risicovol_kleurcode == null ? "wit" : risicovol_kleurcode.toLowerCase();
+        switch (kleurcode) {
+          case "rood": kleurIndicator.setWaarschuwingsniveau(BigInteger.valueOf(Math.max(1, maxNiveau))); break;
+          case "oranje": kleurIndicator.setWaarschuwingsniveau(BigInteger.valueOf(Math.max(2, maxNiveau))); break;
+          case "blauw": kleurIndicator.setWaarschuwingsniveau(BigInteger.valueOf(Math.max(3, maxNiveau))); break;
+          default: kleurIndicator.setWaarschuwingsniveau(BigInteger.valueOf(0));
+        }
+
+        kleurIndicator.setLabel(rs.getString("risicovol_label"));
+        kleurIndicator.setAanvullendeinfo(rs.getString("risicovol_aanvullende_informatie"));
+        if (indicator != null) kleurIndicator.setIndicator(indicator.getGevraagdeindicator());
+      }
       else log.info("No database entry found for BAG ID " + bagID);
 
     } catch (SQLException e) {
@@ -60,11 +81,11 @@ public class BrandweerServiceImpl implements BrandweerService {
       }
     }
 
-    return kleurcode;
+    return kleurIndicator;
   }
 
   @Override
-  public void insertStatusResponse(Connection conn, IncomingDoc incomingDoc) {
+  public void insertStatusResponse(Connection conn, main.java.com.incentro.ws.models.bd.IncomingDoc incomingDoc) {
 
     if (incomingDoc == null) {
       log.error("Nothing to insert in to the database.");
@@ -79,22 +100,24 @@ public class BrandweerServiceImpl implements BrandweerService {
         String currentDate = dateFormat.format(new Date());
 
         String sql = "INSERT INTO " + table + "(log_time,incident_id,incident_prioriteit,incident_start_dtg,bag_id" +
-            ",gevraagde_indicator,status) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            ",gevraagde_indicator,indicator_waarschuwingsniveau,indicator_label,indicator_aanvullende_informatie) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         st = conn.prepareStatement(sql);
 
         st.setString(1, currentDate);
-        st.setString(2, incomingDoc.getINCIDENTID());
-        st.setString(3, incomingDoc.getPRIORITEITINCIDENT());
-        st.setString(4, incomingDoc.getDTGSTARTINCIDENT() != null ?
-              incomingDoc.getDTGSTARTINCIDENT().toString(): null);
+        st.setString(2, incomingDoc.getIncidentid());
+        st.setString(3, incomingDoc.getPrioriteitincident());
+        st.setString(4, incomingDoc.getDtgstartincident() != null ?
+              incomingDoc.getDtgstartincident().toString(): null);
 
         if (incomingDoc.getLocatie() != null && incomingDoc.getLocatie().getBag() != null) {
           st.setString(5, incomingDoc.getLocatie().getBag().getBagid()); } else st.setString(5, null);
 
-        IncomingDoc.Indicator indicator = incomingDoc.getIndicator();
-        st.setString(6, indicator != null ? incomingDoc.getIndicator().getGevraagdeindicator() : null);
-        st.setString(7, indicator != null ? incomingDoc.getIndicator().getMaximaaltoegestaanwaarschuwingsniveau().toString() : null);
+        main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator indicator = incomingDoc.getIndicator();
+        st.setString(6, indicator != null ? indicator.getIndicator() : null);
+        st.setString(7, indicator != null ? indicator.getWaarschuwingsniveau().toString() : null);
+        st.setString(8, indicator != null ? indicator.getLabel() : null);
+        st.setString(9, indicator != null ? indicator.getAanvullendeinfo() : null);
 
         st.executeUpdate();
 
@@ -109,4 +132,35 @@ public class BrandweerServiceImpl implements BrandweerService {
       }
     }
   }
+
+  public void cleanUpStatusResponse(Connection conn, IncomingDoc incomingDoc) {
+
+    if (incomingDoc == null) {
+      log.error("Missing incomingDoc from request.");
+    } else {
+
+      PreparedStatement st = null;
+
+      try {
+        String table = App.getProperty(Constants.StatusResponse.DB_TABLE);
+
+        String sql = "DELETE FROM " + table + " WHERE incident_id = ?";
+
+        st = conn.prepareStatement(sql);
+
+        st.setString(1, incomingDoc.getINCIDENTID());
+        st.executeUpdate();
+
+      } catch (SQLException e) {
+        log.error(e);
+      } finally {
+        try {
+          if (st != null) st.close();
+        } catch (SQLException e) {
+          log.warn(e);
+        }
+      }
+    }
+  }
+
 }

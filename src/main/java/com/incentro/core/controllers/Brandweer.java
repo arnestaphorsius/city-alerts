@@ -23,17 +23,19 @@ public class Brandweer {
    * Retrieves the color code for an object based on BAG ID.
    *
    * @param bagID the BAG ID
+   * @param indicator the requested Indicator
    * @return the color code
    */
-  public static String getKleurcode(String bagID) {
+  public static main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator getKleurIndicator(String bagID,
+                                                                                            IncomingDoc.Indicator indicator) {
 
     Connection conn = null;
-    String kleurCode = null;
+    main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator kleurCode = null;
 
     try {
       conn = App.getDataRequestConnection();
 
-      kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID);
+      kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID, indicator);
 
     } catch (SQLException e) {
       log.error("Unable to get a connection to the PostgreSQL database.", e);
@@ -53,7 +55,7 @@ public class Brandweer {
    *
    * @param incomingDoc the {@link IncomingDoc} from the request.
    */
-  public static void insertStatusResponse(IncomingDoc incomingDoc) {
+  public static void insertStatusResponse(main.java.com.incentro.ws.models.bd.IncomingDoc incomingDoc) {
 
     Connection conn = null;
 
@@ -72,4 +74,30 @@ public class Brandweer {
       }
     }
   }
+
+  /**
+   * Clean up status responses when the incident is closed.
+   *
+   * @param incomingDoc the {@link IncomingDoc} from the request.
+   */
+  public static void cleanUpStatusResponse(IncomingDoc incomingDoc) {
+
+    Connection conn = null;
+
+    try {
+      conn = App.getStatusResponseConnection();
+
+      BRANDWEER_SERVICE.cleanUpStatusResponse(conn, incomingDoc);
+
+    } catch (SQLException e) {
+      log.error("Unable to get a connection to the PostgreSQL database.", e);
+    } finally {
+      try {
+        if (conn != null) conn.close();
+      } catch (SQLException e) {
+        log.warn("An error occurred while trying to close database connection.");
+      }
+    }
+  }
+
 }

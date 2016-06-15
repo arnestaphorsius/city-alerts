@@ -10,7 +10,9 @@ import java.sql.Connection;
  */
 public interface BrandweerService {
 
-  String getIndicatoren(Connection conn, String bagID);
+  main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator getIndicatoren(Connection conn, String bagID, IncomingDoc.Indicator indicator);
 
-  void insertStatusResponse(Connection conn, IncomingDoc inc);
+  void insertStatusResponse(Connection conn,  main.java.com.incentro.ws.models.bd.IncomingDoc inc);
+
+  void cleanUpStatusResponse(Connection conn, IncomingDoc incomingDoc);
 }

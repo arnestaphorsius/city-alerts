@@ -42,8 +42,8 @@ public class DoorsturenAntwoord {
             log.warn("BagID could not be retrieved from the request.");
           }
 
-          String kleurCode = Brandweer.getKleurcode(bagID);
-          in.setIndicator(IncomingDoc.Indicator.apply(kleurCode));
+          IncomingDoc.Indicator kleurIndicator = Brandweer.getKleurIndicator(bagID, vraag.getIndicator());
+          in.setIndicator(kleurIndicator);
 
           in.setIncidentid(vraag.getINCIDENTID());
           in.setDtgstartincident(vraag.getDTGSTARTINCIDENT());
@@ -51,7 +51,11 @@ public class DoorsturenAntwoord {
           in.setLocatie(IncomingDoc.Locatie.apply(vraag.getLocatie()));
         }
 
-        Brandweer.insertStatusResponse(vraag);
+        if (vraag != null && vraag.getDTGSLUITINCIDENT() != null) {
+          Brandweer.cleanUpStatusResponse(vraag);
+        } else {
+          Brandweer.insertStatusResponse(in);
+        }
 
         log.trace("Sending CityAlert DataResponse.");
 
