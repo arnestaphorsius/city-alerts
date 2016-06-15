@@ -50,11 +50,12 @@ public class BrandweerServiceImpl implements BrandweerService {
 
       rs = st.executeQuery();
 
+      final int maxNiveau = indicator != null && indicator.getMaximaaltoegestaanwaarschuwingsniveau() != null ?
+          indicator.getMaximaaltoegestaanwaarschuwingsniveau().intValue() : 0;
+
       if (rs.next()) {
 
         final String risicovol_kleurcode = rs.getString("risicovol_kleurcode");
-        final int maxNiveau = indicator != null && indicator.getMaximaaltoegestaanwaarschuwingsniveau() != null ?
-            indicator.getMaximaaltoegestaanwaarschuwingsniveau().intValue() : 0;
 
         String kleurcode = risicovol_kleurcode == null ? "wit" : risicovol_kleurcode.toLowerCase();
         switch (kleurcode) {
@@ -66,7 +67,6 @@ public class BrandweerServiceImpl implements BrandweerService {
 
         kleurIndicator.setLabel(rs.getString("risicovol_label"));
         kleurIndicator.setAanvullendeinfo(rs.getString("risicovol_aanvullende_informatie"));
-        if (indicator != null) kleurIndicator.setIndicator(indicator.getGevraagdeindicator());
       }
       else log.info("No database entry found for BAG ID " + bagID);
 
@@ -80,6 +80,7 @@ public class BrandweerServiceImpl implements BrandweerService {
         log.warn(e);
       }
     }
+    if (indicator != null) kleurIndicator.setIndicator(indicator.getGevraagdeindicator());
 
     return kleurIndicator;
   }
@@ -115,7 +116,8 @@ public class BrandweerServiceImpl implements BrandweerService {
 
         main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator indicator = incomingDoc.getIndicator();
         st.setString(6, indicator != null ? indicator.getIndicator() : null);
-        st.setString(7, indicator != null ? indicator.getWaarschuwingsniveau().toString() : null);
+        st.setString(7, indicator != null && indicator.getWaarschuwingsniveau() != null
+            ? indicator.getWaarschuwingsniveau().toString() : "0");
         st.setString(8, indicator != null ? indicator.getLabel() : null);
         st.setString(9, indicator != null ? indicator.getAanvullendeinfo() : null);
 
