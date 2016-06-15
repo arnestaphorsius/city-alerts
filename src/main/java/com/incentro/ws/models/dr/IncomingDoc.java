@@ -83,6 +83,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "incidentid",
     "prioriteitincident",
     "dtgstartincident",
+    "dtgsluitincident",
     "locatie",
     "indicator"
 })
@@ -95,6 +96,9 @@ public class IncomingDoc {
     @XmlElement(name = "DTG_START_INCIDENT", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar dtgstartincident;
+    @XmlElement(name = "DTG_SLUIT_INCIDENT", required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar dtgsluitincident;
     @XmlElement(name = "Locatie", required = true)
     protected IncomingDoc.Locatie locatie;
     @XmlElement(name = "Indicator", required = true)
@@ -170,6 +174,14 @@ public class IncomingDoc {
      */
     public void setDTGSTARTINCIDENT(XMLGregorianCalendar value) {
         this.dtgstartincident = value;
+    }
+
+    public XMLGregorianCalendar getDTGSLUITINCIDENT() {
+        return dtgsluitincident;
+    }
+
+    public void setDTGSLUITINCIDENT(XMLGregorianCalendar dtgsluitincident) {
+        this.dtgsluitincident = dtgsluitincident;
     }
 
     /**
