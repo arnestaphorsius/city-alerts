@@ -11,18 +11,18 @@ import java.net.URL;
  * @author Arne Staphorsius.
  * @since 29-3-2016.
  */
-@WebServiceClient(name = "DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord", targetNamespace = "TNS", wsdlLocation = "https://145.128.20.36:8443/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord?wsdl")
+@WebServiceClient(name = "DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord_CityAlerts_WSProvider_Berichtendienst_Antwoord", targetNamespace = "TNS", wsdlLocation = "https://145.128.20.36:8443/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord_CityAlerts_WSProvider_Berichtendienst_Antwoord?wsdl")
 public class BerichtendienstAntwoordService extends Service {
 
   private final static URL BERICHTENDIENST_WSDL_LOCATION;
   private final static WebServiceException BERICHTENDIENST_EXCEPTION;
-  private final static QName BERICHTENDIENST_QNAME = new QName("TNS", "DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord");
+  private final static QName BERICHTENDIENST_QNAME = new QName("TNS", "DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord_CityAlerts_WSProvider_Berichtendienst_Antwoord");
 
   static {
     URL url = null;
     WebServiceException e = null;
     try {
-      url = new URL("https://145.128.20.36:8443/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord?wsdl");
+      url = new URL("https://145.128.20.36:8443/wsx/services/DataResponse_CityAlerts_WSProvider_Berichtendienst_Antwoord_CityAlerts_WSProvider_Berichtendienst_Antwoord?wsdl");
     } catch (MalformedURLException ex) {
       e = new WebServiceException(ex);
     }
