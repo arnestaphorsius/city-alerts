@@ -27,6 +27,7 @@ public class Constants {
   public static class StatusResponse {
 
     public static final String DB_TABLE = "db.sr.table";
+    public static final String DB_ARCHIVE = "db.sr.archive";
     public static final String DB_URL = "db.sr.url";
     public static final String DB_USER = "db.sr.user";
     public static final String DB_PASSWORD = "db.sr.password";

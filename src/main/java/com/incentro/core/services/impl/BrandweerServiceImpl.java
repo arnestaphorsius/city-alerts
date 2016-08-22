@@ -1,8 +1,8 @@
 package main.java.com.incentro.core.services.impl;
 
+import main.java.com.incentro.core.repositories.QueryRepository;
 import main.java.com.incentro.core.services.BrandweerService;
-import main.java.com.incentro.core.util.App;
-import main.java.com.incentro.core.util.Constants;
+import main.java.com.incentro.core.util.Crypto;
 import main.java.com.incentro.ws.models.dr.IncomingDoc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +28,8 @@ public class BrandweerServiceImpl implements BrandweerService {
                                                                                   String bagID,
                                                                                   IncomingDoc.Indicator indicator) {
 
-    PreparedStatement st = null;
+    final String sql = QueryRepository.getIndicatoren();
+
     ResultSet rs = null;
 
     main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator kleurIndicator =
@@ -39,13 +40,8 @@ public class BrandweerServiceImpl implements BrandweerService {
       return null;
     }
 
-    try {
+    try (PreparedStatement st = conn.prepareStatement(sql)) {
 
-      String table = App.getProperty(Constants.DataRequest.DB_TABLE);
-
-      String sql = "SELECT * FROM " + table + " WHERE bag_id = ?";
-
-      st = conn.prepareStatement(sql);
       st.setString(1, bagID);
 
       rs = st.executeQuery();
@@ -74,12 +70,12 @@ public class BrandweerServiceImpl implements BrandweerService {
       log.error(e);
     } finally {
       try {
-        if (st != null) st.close();
         if (rs != null) rs.close();
       } catch (SQLException e) {
         log.warn(e);
       }
     }
+
     if (indicator != null) kleurIndicator.setIndicator(indicator.getGevraagdeindicator());
 
     return kleurIndicator;
@@ -93,17 +89,11 @@ public class BrandweerServiceImpl implements BrandweerService {
 
     } else {
 
-      PreparedStatement st = null;
+      final String sql = QueryRepository.insertStatusResponse();
 
-      try {
-        String table = App.getProperty(Constants.StatusResponse.DB_TABLE);
+      try (PreparedStatement st = conn.prepareStatement(sql)) {
 
         String currentDate = dateFormat.format(new Date());
-
-        String sql = "INSERT INTO " + table + "(log_time,incident_id,incident_prioriteit,incident_start_dtg,bag_id" +
-            ",gevraagde_indicator,indicator_waarschuwingsniveau,indicator_label,indicator_aanvullende_informatie) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        st = conn.prepareStatement(sql);
 
         st.setString(1, currentDate);
         st.setString(2, incomingDoc.getIncidentid());
@@ -125,12 +115,6 @@ public class BrandweerServiceImpl implements BrandweerService {
 
       } catch (SQLException e) {
         log.error(e);
-      } finally {
-        try {
-          if (st != null) st.close();
-        } catch (SQLException e) {
-          log.warn(e);
-        }
       }
     }
   }
@@ -141,28 +125,97 @@ public class BrandweerServiceImpl implements BrandweerService {
       log.error("Missing incomingDoc from request.");
     } else {
 
-      PreparedStatement st = null;
+      final String sql = QueryRepository.deleteStatusResponse();
 
-      try {
-        String table = App.getProperty(Constants.StatusResponse.DB_TABLE);
+      try (PreparedStatement st = conn.prepareStatement(sql)) {
 
-        String sql = "DELETE FROM " + table + " WHERE incident_id = ?";
+        conn.setAutoCommit(false);
 
-        st = conn.prepareStatement(sql);
+        boolean moved = moveToArchive(conn, incomingDoc);
 
-        st.setString(1, incomingDoc.getINCIDENTID());
-        st.executeUpdate();
+        if (moved) {
+
+          st.setString(1, incomingDoc.getINCIDENTID());
+          st.executeUpdate();
+        }
+
+        conn.commit();
+        conn.setAutoCommit(true);
 
       } catch (SQLException e) {
         log.error(e);
-      } finally {
         try {
-          if (st != null) st.close();
-        } catch (SQLException e) {
-          log.warn(e);
+          conn.rollback();
+        } catch (SQLException e1) {
+          log.error(e1);
         }
       }
     }
+  }
+
+  /**
+   * Retrieve StatusResponses matching the incident id and move them to the archive.
+   *
+   * @param conn the sql connection.
+   * @param incomingDoc the document from the request.
+   * @return true when the
+   * @throws SQLException when a database error occurs.
+   */
+  private boolean moveToArchive(Connection conn, IncomingDoc incomingDoc) throws SQLException {
+
+    ResultSet all = findAllStatusResponses(conn, incomingDoc);
+
+    return all != null && archiveStatusResponses(conn, all);
+  }
+
+  /**
+   * Retrieve all StatusResponses that need to be archived.
+   *
+   * @param conn the sql connection.
+   * @param incomingDoc the document from the request.
+   * @return a {@link ResultSet} with the StatusResponses.
+   * @throws SQLException when a database error occurs.
+   */
+  private ResultSet findAllStatusResponses(Connection conn, IncomingDoc incomingDoc) throws SQLException {
+
+    final String sql = QueryRepository.findAllStatusResponses();
+
+    PreparedStatement get = conn.prepareStatement(sql);
+    get.setString(1, incomingDoc.getINCIDENTID());
+
+    return get.executeQuery();
+  }
+
+  /**
+   * Encrypt the StatusResponses and insert them into the archive database.
+   *
+   * @param conn the sql connection.
+   * @param messages the StatusResponses to be archived.
+   * @return true when the query is successfully executed.
+   * @throws SQLException when a database error occurs.
+   */
+  private boolean archiveStatusResponses(Connection conn, ResultSet messages) throws SQLException {
+
+    final String sql = QueryRepository.archiveStatusResponses();
+
+    PreparedStatement st = conn.prepareStatement(sql);
+    ResultSetMetaData meta = messages.getMetaData();
+
+    String currentDate = dateFormat.format(new Date());
+
+    while (messages.next()) {
+
+      st.setString(1, currentDate);
+      for (int i = 1; i <= meta.getColumnCount(); i++) {
+        st.setObject(i + 1, messages.getObject(i));
+      }
+
+      st.addBatch();
+    }
+
+    st.executeBatch();
+
+    return true;
   }
 
 }
