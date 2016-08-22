@@ -207,7 +207,7 @@ public class BrandweerServiceImpl implements BrandweerService {
 
       st.setString(1, currentDate);
       for (int i = 1; i <= meta.getColumnCount(); i++) {
-        st.setObject(i + 1, messages.getObject(i));
+        st.setObject(i + 1, Crypto.encrypt(messages.getObject(i)));
       }
 
       st.addBatch();
