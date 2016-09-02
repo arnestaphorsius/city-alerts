@@ -29,22 +29,14 @@ public class Brandweer {
   public static main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator getKleurIndicator(String bagID,
                                                                                             IncomingDoc.Indicator indicator) {
 
-    Connection conn = null;
     main.java.com.incentro.ws.models.bd.IncomingDoc.Indicator kleurCode = null;
 
-    try {
-      conn = App.getDataRequestConnection();
+    try (Connection conn = App.getDataRequestConnection()) {
 
       kleurCode = BRANDWEER_SERVICE.getIndicatoren(conn, bagID, indicator);
 
     } catch (SQLException e) {
       log.error("Unable to get a connection to the PostgreSQL database.", e);
-    } finally {
-      try {
-        if (conn != null) conn.close();
-      } catch (SQLException e) {
-        log.warn("An error occurred while trying to close database connection.");
-      }
     }
 
     return kleurCode;
@@ -57,21 +49,12 @@ public class Brandweer {
    */
   public static void insertStatusResponse(main.java.com.incentro.ws.models.bd.IncomingDoc incomingDoc) {
 
-    Connection conn = null;
-
-    try {
-      conn = App.getStatusResponseConnection();
+    try (Connection conn = App.getStatusResponseConnection()) {
 
       BRANDWEER_SERVICE.insertStatusResponse(conn, incomingDoc);
 
     } catch (SQLException e) {
       log.error("Unable to get a connection to the PostgreSQL database.", e);
-    } finally {
-      try {
-        if (conn != null) conn.close();
-      } catch (SQLException e) {
-        log.warn("An error occurred while trying to close database connection.");
-      }
     }
   }
 
@@ -82,21 +65,12 @@ public class Brandweer {
    */
   public static void cleanUpStatusResponse(IncomingDoc incomingDoc) {
 
-    Connection conn = null;
-
-    try {
-      conn = App.getStatusResponseConnection();
+    try (Connection conn = App.getStatusResponseConnection()) {
 
       BRANDWEER_SERVICE.cleanUpStatusResponse(conn, incomingDoc);
 
     } catch (SQLException e) {
       log.error("Unable to get a connection to the PostgreSQL database.", e);
-    } finally {
-      try {
-        if (conn != null) conn.close();
-      } catch (SQLException e) {
-        log.warn("An error occurred while trying to close database connection.");
-      }
     }
   }
 
